@@ -25,7 +25,32 @@ def mélanger(cartes):
     shuffle(mes_cartes)
     return mes_cartes
 
-def bataille():
-    pass
+def distribuer(cartes):
+    joueur_1 = []
+    joueur_2 = []
+    for i in range (0,len(cartes),2):
+        joueur_1.append(cartes[i])
+        joueur_2.append(cartes[i+1])
+    return joueur_1, joueur_2
+
+def bataille(cartes):
+    cartes_mélangées = mélanger(cartes)
+    joueur_1, joueur_2 = distribuer(cartes_mélangées)
+    while len(joueur_1)!=0 or len(joueur_2)!=0:
+        if joueur_1[0]>joueur_2[0]:
+            print("Joueur 1 gagne la manche")
+            joueur_1.append(joueur_2[0])
+            joueur_1.append(joueur_1.pop(0))
+            del joueur_2[0]
+        elif joueur_2[0]>joueur_1[0]:
+            print("Joueur 2 gagne la manche")
+            joueur_2.append(joueur_1[0])
+            joueur_2.append(joueur_2.pop(0))
+            del joueur_1[0]
+        else:
+            print("égalité")
+            joueur_1.append(joueur_1.pop(0))
+            joueur_2.append(joueur_2.pop(0))
 
 print(mélanger(les_cartes))
+
