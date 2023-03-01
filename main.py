@@ -36,7 +36,7 @@ def distribuer(cartes):
 def bataille(cartes):
     cartes_mélangées = mélanger(cartes)
     joueur_1, joueur_2 = distribuer(cartes_mélangées)
-    while len(joueur_1)!=0 or len(joueur_2)!=0:
+    while len(joueur_1)!=0 and len(joueur_2)!=0:
         if joueur_1[0]>joueur_2[0]:
             print("Joueur 1 gagne la manche")
             joueur_1.append(joueur_2[0])
@@ -51,6 +51,10 @@ def bataille(cartes):
             print("égalité")
             joueur_1.append(joueur_1.pop(0))
             joueur_2.append(joueur_2.pop(0))
+    if len(joueur_1)==0:
+        return ("Joueur 2 a gagné le match")
+    else:
+        return("Joueur 1 a gagné le match")
 
-print(mélanger(les_cartes))
+print(bataille(les_cartes))
 
