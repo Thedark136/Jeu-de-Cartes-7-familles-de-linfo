@@ -1,60 +1,141 @@
 from tkinter import *
-from random import shuffle
-
-les_cartes = {
-    "Sécurité et confidentialité":[("Jules César",1),("AL-Kindi",2),("Diffie Hellman",3),("Rivest-Shamir-Adleman (RSA)",4),("Shafi Goldwasser",5),("Cynthia Dwork",6)],
-    "Algorithmes & Programmation":[("Al-Khwarizmi",1), ("Ada Lovelace",2), ("Grace Hopper",3), ("Dorothy Vaughan",4), ("Gilles Kahn",5), ("Gérard Berry",6)],
-    "Mathématiques & Informatique":[("Hypatie d'Alexandrie",1), ("George Boole",2), ("Alonzo Church",3), ("Jacques-Louis Lions",4), ("Ingrid Daubechies",5), ("Jocelyne Troccaz",6)],
-    "Intelligence Artificielle":[("Herbert Simon",1), ("Marvin Minsky",2), ("Geoffrey Hinton",3), ("Rose Dieng-Kuntz",4), ("Yann LeCun",5), ("Cordelia Schmid",6)],
-    "Machines & Composants":[("Charles Babbage",1), ("John von Neumann",2), ("Hedy Lamarr",3), ("Seymour Cray",4), ("Gordon Moore",5), ("Hiroshi Ishiguro",6)],
-    "Interaction Homme-Machine":[("Doug Engelbart",1), ("Ted Nelson",2), ("Alan Kay",3), ("Joëlle Coutaz",4), ("Jean-Marie Hullot",5), ("Marie-Paule Cani",6)],
-    "Systèmes & réseaux":[("Alexander Graham Bell",1), ("Claude Shannon",2), ("Vinton Cerf",3), ("Tim Berners-Lee",4), ("Pascale Vicat-Blanc",5), ("Anne-Marie Kermarrec",6)],
-    "Joker":[("Alan Turing",7),("Alan Turing",7)]
-}
+import random
+from PIL import Image, ImageTk
 
 
-def cards(cartes):
-    mes_cartes = []
-    for elt in cartes:
-        for j in range(len(cartes[elt])):
-            mes_cartes.append(cartes[elt][j])
-    return mes_cartes
 
-def mélanger(cartes):
-    mes_cartes = cards(cartes)
-    shuffle(mes_cartes)
-    return mes_cartes
+root = Tk()
+root.title('Nsi Project 3')
+photo = PhotoImage(file = "images/icon.png")
+root.iconphoto(False, photo)
 
-def distribuer(cartes):
-    joueur_1 = []
-    joueur_2 = []
-    for i in range (0,len(cartes),2):
-        joueur_1.append(cartes[i])
-        joueur_2.append(cartes[i+1])
-    return joueur_1, joueur_2
+root.geometry("900x500")
+root.configure(background="#F5F1ED")
 
-def bataille(cartes):
-    cartes_mélangées = mélanger(cartes)
-    joueur_1, joueur_2 = distribuer(cartes_mélangées)
-    while len(joueur_1)!=0 and len(joueur_2)!=0:
-        if joueur_1[0][1]>joueur_2[0][1]:
-            print("Joueur 1 gagne la manche")
-            joueur_1.append(joueur_2[0])
-            joueur_1.append(joueur_1.pop(0))
-            del joueur_2[0]
-        elif joueur_2[0][1]>joueur_1[0][1]:
-            print("Joueur 2 gagne la manche")
-            joueur_2.append(joueur_1[0])
-            joueur_2.append(joueur_2.pop(0))
-            del joueur_1[0]
-        else:
-            print("égalité")
-            joueur_1.append(joueur_1.pop(0))
-            joueur_2.append(joueur_2.pop(0))
-    if len(joueur_1)==0:
-        return ("Joueur 2 a gagné le match")
-    else:
-        return("Joueur 1 a gagné le match")
+# Resize Cards
+def resize_cards(card):
+	# Open the image
+	our_card_img = Image.open(card)
 
-print(bataille(les_cartes))
+	# Resize The Image
+	our_card_resize_image = our_card_img.resize((150, 218))
+	
+	# output the card
+	global our_card_image
+	our_card_image = ImageTk.PhotoImage(our_card_resize_image)
 
+	# Return that card
+	return our_card_image
+
+# Shuffle The Cards
+def shuffle():
+	# Define Our Deck
+	suits = ["diamonds", "clubs", "hearts", "spades"]
+	values = range(2, 15)
+	# 11 = Jack, 12=Queen, 13=King, 14 = Ace
+
+	global deck
+	deck =[]
+
+	for suit in suits:
+		for value in values:
+			deck.append(f'{value}_of_{suit}')
+
+	# Create our players
+	global player1 , player2
+	player1  = []
+	player2 = []
+
+	# Grab a random Card For player 1 
+	card = random.choice(deck)
+	# Remove Card From Deck
+	deck.remove(card)
+	# Append Card To player 1  List
+	player1.append(card)
+	# Output Card To Screen
+	global player1_image
+	player1_image = resize_cards(f'images\card_test.jpg')
+	player1_label.config(image=player1_image)
+
+	# Grab a random Card For Player
+	card = random.choice(deck)
+	# Remove Card From Deck
+	deck.remove(card)
+	# Append Card To player 1  List
+	player2.append(card)
+	# Output Card To Screen
+	global player2_image
+	player2_image = resize_cards(f'images\card_test.jpg')
+	player2_label.config(image=player2_image)
+
+	# Put number of remaining cards in title bar
+	root.title(f'Nsi Project 3 - {len(deck)} Cards Left')
+
+
+# Deal Out Cards
+def deal_cards():
+	try:
+		# Get the player1 Card
+		card = random.choice(deck)
+		# Remove Card From Deck
+		deck.remove(card)
+		# Append Card To player 1  List
+		player1.append(card)
+		# Output Card To Screen
+		global player1_image
+		player1_image = resize_cards(f'images\card_test.jpg')
+		player1_label.config(image=player1_image)
+
+		# Get the player2 Card
+		card = random.choice(deck)
+		# Remove Card From Deck
+		deck.remove(card)
+		# Append Card To player 1  List
+		player2.append(card)
+		# Output Card To Screen
+		global player2_image
+		player2_image = resize_cards(f'images\card_test.jpg')
+		player2_label.config(image=player2_image)
+
+		# Put number of remaining cards in title bar
+		root.title(f'Nsi Project 3 - {len(deck)} Cards Left')
+
+	except:
+		root.title(f'Nsi Project 3 - No Cards In Deck')
+		print("no more cards")
+
+
+
+
+my_frame = Frame(root, bg="#F5F1ED")
+my_frame.pack(pady=20)
+
+# Create Frames For Cards
+player1_frame = LabelFrame(my_frame, text="Player 1" , fg='white', bd=0, bg="#252323")
+player1_frame.grid(row=0, column=0, padx=20, ipadx=30)
+
+player2_frame = LabelFrame(my_frame, text="Player 2" , fg='white', bd=0, bg="#252323")
+player2_frame.grid(row=0, column=1, ipadx=30)
+
+# Put cards in frames
+player1_label = Label(player1_frame, text='')
+player1_label.pack(pady=20)
+
+player2_label = Label(player2_frame, text='')
+player2_label.pack(pady=20)
+
+
+# Create a couple buttons
+shuffle_button = Button(root, text="Shuffle Deck", font=("Helvetica", 14), command=shuffle)
+shuffle_button.pack(pady=20)
+
+card_button = Button(root, text="Get Cards", font=("Helvetica", 14), command=deal_cards)
+card_button.pack(pady=20)
+
+
+
+# Shuffle Deck On Start
+shuffle()
+
+
+root.mainloop()
