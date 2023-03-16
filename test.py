@@ -1,3 +1,0 @@
-ma = []
-
-print(len(ma))
