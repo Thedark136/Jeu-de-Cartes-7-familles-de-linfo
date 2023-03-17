@@ -27,85 +27,71 @@ def resize_cards(card):
 	# Return that card
 	return our_card_image
 
-# Shuffle The Cards
-def shuffle():
-	# Define Our Deck
-	suits = ["diamonds", "clubs", "hearts", "spades"]
-	values = range(2, 15)
-	# 11 = Jack, 12=Queen, 13=King, 14 = Ace
+les_cartes = {
+    "Sécurité et confidentialité":[("Jules César",1),("AL-Kindi",2),("Diffie Hellman",3),("Rivest-Shamir-Adleman (RSA)",4),("Shafi Goldwasser",5),("Cynthia Dwork",6)],
+    "Algorithmes & Programmation":[("Al-Khwarizmi",1), ("Ada Lovelace",2), ("Grace Hopper",3), ("Dorothy Vaughan",4), ("Gilles Kahn",5), ("Gérard Berry",6)],
+    "Mathématiques & Informatique":[("Hypatie d'Alexandrie",1), ("George Boole",2), ("Alonzo Church",3), ("Jacques-Louis Lions",4), ("Ingrid Daubechies",5), ("Jocelyne Troccaz",6)],
+    "Intelligence Artificielle":[("Herbert Simon",1), ("Marvin Minsky",2), ("Geoffrey Hinton",3), ("Rose Dieng-Kuntz",4), ("Yann LeCun",5), ("Cordelia Schmid",6)],
+    "Machines & Composants":[("Charles Babbage",1), ("John von Neumann",2), ("Hedy Lamarr",3), ("Seymour Cray",4), ("Gordon Moore",5), ("Hiroshi Ishiguro",6)],
+    "Interaction Homme-Machine":[("Doug Engelbart",1), ("Ted Nelson",2), ("Alan Kay",3), ("Joëlle Coutaz",4), ("Jean-Marie Hullot",5), ("Marie-Paule Cani",6)],
+    "Systèmes & réseaux":[("Alexander Graham Bell",1), ("Claude Shannon",2), ("Vinton Cerf",3), ("Tim Berners-Lee",4), ("Pascale Vicat-Blanc",5), ("Anne-Marie Kermarrec",6)],
+    "Joker":[("Alan Turing",7),("Alan Turing",7)]
+}
 
-	global deck
-	deck =[]
+def cards(cartes):
+    mes_cartes = []
+    for elt in cartes:
+        for j in range(len(cartes[elt])):
+            mes_cartes.append(cartes[elt][j])
+    return mes_cartes
 
-	for suit in suits:
-		for value in values:
-			deck.append(f'{value}_of_{suit}')
+def mélanger(cartes):
+    mes_cartes = cards(cartes)
+    random.shuffle(mes_cartes)
+    return mes_cartes
 
-	# Create our players
-	global player1 , player2
-	player1  = []
-	player2 = []
+def commencer():
+    cartes = mélanger(les_cartes)
+    global joueur_1
+    global joueur_2
+    joueur_1 = []
+    joueur_2 = []
+    for i in range (0,len(cartes),2):
+        joueur_1.append(cartes[i])
+        joueur_2.append(cartes[i+1])
+    global player1_image
+    player1_image = resize_cards(f'Cartes/back.png')
+    player1_label.config(image=player1_image)
+    
+    global player2_image
+    player2_image = resize_cards(f'Cartes/back.png')
+    player2_label.config(image=player2_image)
+     
 
-	# Grab a random Card For player 1 
-	card = random.choice(deck)
-	# Remove Card From Deck
-	deck.remove(card)
-	# Append Card To player 1  List
-	player1.append(card)
-	# Output Card To Screen
-	global player1_image
-	player1_image = resize_cards(f'images\card_test.jpg')
-	player1_label.config(image=player1_image)
-
-	# Grab a random Card For Player
-	card = random.choice(deck)
-	# Remove Card From Deck
-	deck.remove(card)
-	# Append Card To player 1  List
-	player2.append(card)
-	# Output Card To Screen
-	global player2_image
-	player2_image = resize_cards(f'images\card_test.jpg')
-	player2_label.config(image=player2_image)
-
-	# Put number of remaining cards in title bar
-	root.title(f'Nsi Project 3 - {len(deck)} Cards Left')
-
-
-# Deal Out Cards
-def deal_cards():
-	try:
-		# Get the player1 Card
-		card = random.choice(deck)
-		# Remove Card From Deck
-		deck.remove(card)
-		# Append Card To player 1  List
-		player1.append(card)
-		# Output Card To Screen
-		global player1_image
-		player1_image = resize_cards(f'images\card_test.jpg')
-		player1_label.config(image=player1_image)
-
-		# Get the player2 Card
-		card = random.choice(deck)
-		# Remove Card From Deck
-		deck.remove(card)
-		# Append Card To player 1  List
-		player2.append(card)
-		# Output Card To Screen
-		global player2_image
-		player2_image = resize_cards(f'images\card_test.jpg')
-		player2_label.config(image=player2_image)
-
-		# Put number of remaining cards in title bar
-		root.title(f'Nsi Project 3 - {len(deck)} Cards Left')
-
-	except:
-		root.title(f'Nsi Project 3 - No Cards In Deck')
-		print("no more cards")
-
-
-
+def Jouer():
+    player1_image = resize_cards(f'Cartes/Alan_turing.png')
+    player1_label.config(image=player1_image)
+    if joueur_1[0]>joueur_2[0]:
+        print("Joueur 1 gagne la manche")
+        joueur_1.append(joueur_2[0])
+        joueur_1.append(joueur_1.pop(0))
+        del joueur_2[0]
+    elif joueur_2[0]>joueur_1[0]:
+        print("Joueur 2 gagne la manche")
+        joueur_2.append(joueur_1[0])
+        joueur_2.append(joueur_2.pop(0))
+        del joueur_1[0]
+    else:
+        print("égalité")
+        joueur_1.append(joueur_1.pop(0))
+        joueur_2.append(joueur_2.pop(0))
+    if len(joueur_1)==0:
+        return ("Joueur 2 a gagné le match")
+    else:
+        return("Joueur 1 a gagné le match")
+        
+    root.title(f'Nsi Project 3 - {len(joueur_1)}, {len(joueur_2)} Cards Left')
+    
 
 my_frame = Frame(root, bg="#F5F1ED")
 my_frame.pack(pady=20)
@@ -126,16 +112,15 @@ player2_label.pack(pady=20)
 
 
 # Create a couple buttons
-shuffle_button = Button(root, text="Shuffle Deck", font=("Helvetica", 14), command=shuffle)
-shuffle_button.pack(pady=20)
+jouer_button = Button(root, text="Jouer", font=("Helvetica", 14), command=Jouer)
+jouer_button.pack(pady=20)
 
-card_button = Button(root, text="Get Cards", font=("Helvetica", 14), command=deal_cards)
+card_button = Button(root, text="Commencer", font=("Helvetica", 14), command=commencer)
 card_button.pack(pady=20)
 
 
 
-# Shuffle Deck On Start
-shuffle()
+
 
 
 root.mainloop()
