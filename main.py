@@ -6,8 +6,7 @@ from PIL import Image, ImageTk
 
 root = Tk()
 root.title('Nsi Project 3')
-photo = PhotoImage(file = "images/icon.png")
-root.iconphoto(False, photo)
+
 
 root.geometry("900x500")
 root.configure(background="#F5F1ED")
@@ -69,14 +68,19 @@ def commencer():
      
 
 def Jouer():
-    player1_image = resize_cards(f'Cartes/Alan_turing.png')
+    player1_image = resize_cards(f'Cartes/{joueur_1[0][0]}.png')
     player1_label.config(image=player1_image)
-    if joueur_1[0]>joueur_2[0]:
+    
+
+    player2_image = resize_cards(f'Cartes/{joueur_2[0][0]}.png')
+    player2_label.config(image=player2_image)
+
+    if joueur_1[0][1]>joueur_2[0][1]:
         print("Joueur 1 gagne la manche")
         joueur_1.append(joueur_2[0])
         joueur_1.append(joueur_1.pop(0))
         del joueur_2[0]
-    elif joueur_2[0]>joueur_1[0]:
+    elif joueur_2[0][1]>joueur_1[0][1]:
         print("Joueur 2 gagne la manche")
         joueur_2.append(joueur_1[0])
         joueur_2.append(joueur_2.pop(0))
