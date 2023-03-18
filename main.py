@@ -69,6 +69,10 @@ def commencer():
      
 
 def Jouer():
+    if len(joueur_1)==0:
+        return ("Joueur 2 a gagné le match")
+    elif len(joueur_2)==0:
+        return("Joueur 1 a gagné le match")
     global player1_image
     player1_image = resize_cards(f'Cartes/{joueur_1[0][0]}.png')
     player1_label.config(image=player1_image)
@@ -91,11 +95,8 @@ def Jouer():
         print("égalité")
         joueur_1.append(joueur_1.pop(0))
         joueur_2.append(joueur_2.pop(0))
-    if len(joueur_1)==0:
-        return ("Joueur 2 a gagné le match")
-    else:
-        return("Joueur 1 a gagné le match")
-    root.title(f'Projet NSI 3 - {len(joueur_1)} restantes au joueur 1, {len(joueur_2)}restantes au joueur 2')
+    
+    root.title(f'Projet NSI 3 - {len(joueur_1)} restantes au joueur 1, {len(joueur_2)} restantes au joueur 2')
     
 
 my_frame = Frame(root, bg="#F5F1ED")
