@@ -4,6 +4,7 @@ from PIL import Image, ImageTk
 
 
 
+
 root = Tk()
 root.title('Nsi Project 3')
 
@@ -93,7 +94,6 @@ def Jouer():
         return ("Joueur 2 a gagné le match")
     else:
         return("Joueur 1 a gagné le match")
-        
     root.title(f'Projet NSI 3 - {len(joueur_1)} restantes au joueur 1, {len(joueur_2)}restantes au joueur 2')
     
 
