@@ -69,10 +69,11 @@ def commencer():
      
 
 def Jouer():
+    global player1_image
     player1_image = resize_cards(f'Cartes/{joueur_1[0][0]}.png')
     player1_label.config(image=player1_image)
     
-
+    global player2_image
     player2_image = resize_cards(f'Cartes/{joueur_2[0][0]}.png')
     player2_label.config(image=player2_image)
 
