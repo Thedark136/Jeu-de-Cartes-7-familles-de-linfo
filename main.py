@@ -66,13 +66,29 @@ def commencer():
     global player2_image
     player2_image = resize_cards(f'Cartes/back.png')
     player2_label.config(image=player2_image)
+    
+    start_button.config(text="Rejouer")
      
 
 def Jouer():
+
+    joueur_1_victoire = 0
+    joueur_2_victoire = 0
+    
+    player1_frame.config(text=f"Joueur 1 - Victoires : {joueur_1_victoire}")
+    player2_frame.config(text=f"Joueur 2 - Victoires : {joueur_2_victoire}")
+	
     if len(joueur_1)==0:
+        joueur_2_victoire+=1
+        player1_frame.config(text=f"Joueur 1 - Victoires : {joueur_1_victoire}")
+        player2_frame.config(text=f"Joueur 2 - Victoires : {joueur_2_victoire}")
         return ("Joueur 2 a gagné le match")
     elif len(joueur_2)==0:
+        joueur_1_victoire+=1
+        player1_frame.config(text=f"Joueur 1 - Victoires : {joueur_1_victoire}")
+        player2_frame.config(text=f"Joueur 2 - Victoires : {joueur_2_victoire}")
         return("Joueur 1 a gagné le match")
+    
     global player1_image
     player1_image = resize_cards(f'Cartes/{joueur_1[0][0]}.png')
     player1_label.config(image=player1_image)
@@ -97,7 +113,8 @@ def Jouer():
         joueur_2.append(joueur_2.pop(0))
     
     root.title(f'Projet NSI 3 - {len(joueur_1)} restantes au joueur 1, {len(joueur_2)} restantes au joueur 2')
-    
+def Jouer_loop():
+    pass   
 
 my_frame = Frame(root, bg="#F5F1ED")
 my_frame.pack(pady=20)
@@ -119,10 +136,13 @@ player2_label.pack(pady=20)
 
 # Create a couple buttons
 jouer_button = Button(root, text="Jouer", font=("Helvetica", 14), command=Jouer)
-jouer_button.pack(pady=20)
+jouer_button.pack(pady=13)
 
-card_button = Button(root, text="Commencer", font=("Helvetica", 14), command=commencer)
-card_button.pack(pady=20)
+loop_button = Button(root, text="Jouer automatiquement", font=("Helvetica", 14), command=Jouer_loop)
+loop_button.pack(pady=13)
+
+start_button = Button(root, text="Commencer", font=("Helvetica", 14), command=commencer)
+start_button.pack(pady=13)
 
 
 
