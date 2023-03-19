@@ -1,6 +1,7 @@
 from tkinter import *
 import random
 from PIL import Image, ImageTk
+import time
 
 
 
@@ -9,7 +10,7 @@ root = Tk()
 root.title('Nsi Project 3')
 
 
-root.geometry("900x500")
+root.geometry("1000x550")
 root.configure(background="#F5F1ED")
 
 # Resize Cards
@@ -113,8 +114,10 @@ def Jouer():
         joueur_2.append(joueur_2.pop(0))
     
     root.title(f'Projet NSI 3 - {len(joueur_1)} restantes au joueur 1, {len(joueur_2)} restantes au joueur 2')
+    
 def Jouer_loop():
-    pass   
+    
+
 
 my_frame = Frame(root, bg="#F5F1ED")
 my_frame.pack(pady=20)
