@@ -116,7 +116,7 @@ def Jouer():
     root.title(f'Projet NSI 3 - {len(joueur_1)} restantes au joueur 1, {len(joueur_2)} restantes au joueur 2')
     
 def Jouer_loop():
-    
+    pass
 
 
 my_frame = Frame(root, bg="#F5F1ED")
