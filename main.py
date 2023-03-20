@@ -99,13 +99,9 @@ def Jouer():
         return("Joueur 1 a gagné le match")
     
     
-    global joueur1_image
-    joueur1_image = resize_cards(f'Cartes/{joueur_1[0][0]}.png')
-    joueur1_label.config(image=joueur1_image)
     
-    global joueur2_image
-    joueur2_image = resize_cards(f'Cartes/{joueur_2[0][0]}.png')
-    joueur2_label.config(image=joueur2_image)
+    print(joueur_1[0][1])
+    print(joueur_2[0][1])
 
     if joueur_1[0][1]>joueur_2[0][1]:
         print("Joueur 1 gagne la manche")
@@ -124,6 +120,13 @@ def Jouer():
     
     joueur1_frame.config(text=f"Joueur 1 - Cartes :  {len(joueur_1)}")
     joueur2_frame.config(text=f"Joueur 2 - Cartes :  {len(joueur_2)}")
+    global joueur1_image
+    joueur1_image = resize_cards(f'Cartes/{joueur_1[0][0]}.png')
+    joueur1_label.config(image=joueur1_image)
+    
+    global joueur2_image
+    joueur2_image = resize_cards(f'Cartes/{joueur_2[0][0]}.png')
+    joueur2_label.config(image=joueur2_image)
     
     
 #dangerzone 
