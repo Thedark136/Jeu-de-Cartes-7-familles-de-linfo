@@ -4,7 +4,7 @@
 #  / /|  /___/ // /    ___/ / 
 # /_/ |_//____/___/   /____/  
 
-# on import les librairy pour le ui et le jeu
+# on importe les librairies pour le ui et le jeu
 from tkinter import *
 import random
 from PIL import Image, ImageTk
@@ -33,7 +33,7 @@ les_cartes = {
 }
 
 
-# fonction qui prend toutes les cartes et les range dans une liste
+# fonction qui prend toutes les cartes et les rangent dans une liste
 def cards(cartes):
     mes_cartes = []
     for elt in cartes:
@@ -47,7 +47,7 @@ def mélanger(cartes):
     random.shuffle(mes_cartes)
     return mes_cartes
 
-# fonction pour initialiser la photo du deriere des cartes au debut du program
+# fonction pour initialiser la photo du derriere des cartes au debut du programme
 def init():
     global joueur1_image
     joueur1_image = resize_cards(f'Cartes/back.png')
@@ -73,7 +73,7 @@ def resize_cards(card):
 
 
 
-# fonction pour commencer le jeu
+# fonction pour commence le jeux
 def commencer():
     # on melange le cartes pour les preparer a diffuser aux 2 joueurs
     cartes = mélanger(les_cartes)
@@ -138,60 +138,62 @@ def Jouer():
     joueur2_label.config(image=joueur2_image)
     
 
-def version2():
-    #initialisation des nombres de victoire
-    joueur_1_victoire = 0
-    joueur_2_victoire = 0
-    #on change le titre de la fenetre pour dire le nombre de victoire
-    root.title(f'Projet NSI 3 - Victoires du Joueur 1 : {joueur_1_victoire}, Victoires du Joueur 2: {joueur_1_victoire}')
-    
-    for i in range(len(joueur_1)):
-        joueur_1_listbox.insert(i+1, joueur_1[i][0])
-        
-    for i in range(len(joueur_2)):
-        joueur_2_listbox.insert(i+1, joueur_2[i][0])
-    
-	# on voit qui gagne 
-    if len(joueur_1)==0:
-        joueur_2_victoire+=1
-        root.title(f'Projet NSI 3 - Victoires du Joueur 1 : {joueur_1_victoire}, Victoires du Joueur 2: {joueur_1_victoire}')
-        return ("Joueur 2 a gagné le match")
-    
-    elif len(joueur_2)==0:
-        joueur_1_victoire+=1
-        root.title(f'Projet NSI 3 - Victoires du Joueur 1 : {joueur_1_victoire}, Victoires du Joueur 2: {joueur_1_victoire}')
-        return("Joueur 1 a gagné le match")
-    
-    #on compare les cartes et donne les 2 cartes au gagnant
-    # sauf si c'est une egalite
-    if joueur_1[0][1]>joueur_2[0][1]:
-        print("Joueur 1 gagne la manche")
-        joueur_1.append(joueur_2[0])
-        joueur_1.append(joueur_1.pop(0))
-        del joueur_2[0]
-    
-    elif joueur_2[0][1]>joueur_1[0][1]:
-        print("Joueur 2 gagne la manche")
-        joueur_2.append(joueur_1[0])
-        joueur_2.append(joueur_2.pop(0))
-        del joueur_1[0]
-    else:
-        print("égalité")
-        joueur_1.append(joueur_1.pop(0))
-        joueur_2.append(joueur_2.pop(0))
-    
-    #on affiche le nombre de cartes
-    joueur1_frame.config(text=f"Joueur 1 - Cartes :  {len(joueur_1)}")
-    joueur2_frame.config(text=f"Joueur 2 - Cartes :  {len(joueur_2)}")
-    
-    # on affiche les prochaines images au joueur
-    global joueur1_image
-    joueur1_image = resize_cards(f'Cartes/{joueur_1[0][0]}.png')
-    joueur1_label.config(image=joueur1_image)
-    
-    global joueur2_image
-    joueur2_image = resize_cards(f'Cartes/{joueur_2[0][0]}.png')
-    joueur2_label.config(image=joueur2_image)
+
+#cette partie du code est toujours en developement
+# def version2():
+#     #initialisation des nombres de victoire
+#     joueur_1_victoire = 0
+#     joueur_2_victoire = 0
+#     #on change le titre de la fenetre pour dire le nombre de victoire
+#     root.title(f'Projet NSI 3 - Victoires du Joueur 1 : {joueur_1_victoire}, Victoires du Joueur 2: {joueur_1_victoire}')
+
+#     for i in range(len(joueur_1)):
+#         joueur_1_listbox.insert(i+1, joueur_1[i][0])
+
+#     for i in range(len(joueur_2)):
+#         joueur_2_listbox.insert(i+1, joueur_2[i][0])
+
+# 	# on voit qui gagne 
+#     if len(joueur_1)==0:
+#         joueur_2_victoire+=1
+#         root.title(f'Projet NSI 3 - Victoires du Joueur 1 : {joueur_1_victoire}, Victoires du Joueur 2: {joueur_1_victoire}')
+#         return ("Joueur 2 a gagné le match")
+
+#     elif len(joueur_2)==0:
+#         joueur_1_victoire+=1
+#         root.title(f'Projet NSI 3 - Victoires du Joueur 1 : {joueur_1_victoire}, Victoires du Joueur 2: {joueur_1_victoire}')
+#         return("Joueur 1 a gagné le match")
+
+#     #on compare les cartes et donne les 2 cartes au gagnant
+#     # sauf si c'est une egalite
+#     if joueur_1[0][1]>joueur_2[0][1]:
+#         print("Joueur 1 gagne la manche")
+#         joueur_1.append(joueur_2[0])
+#         joueur_1.append(joueur_1.pop(0))
+#         del joueur_2[0]
+
+#     elif joueur_2[0][1]>joueur_1[0][1]:
+#         print("Joueur 2 gagne la manche")
+#         joueur_2.append(joueur_1[0])
+#         joueur_2.append(joueur_2.pop(0))
+#         del joueur_1[0]
+#     else:
+#         print("égalité")
+#         joueur_1.append(joueur_1.pop(0))
+#         joueur_2.append(joueur_2.pop(0))
+
+#     #on affiche le nombre de cartes
+#     joueur1_frame.config(text=f"Joueur 1 - Cartes :  {len(joueur_1)}")
+#     joueur2_frame.config(text=f"Joueur 2 - Cartes :  {len(joueur_2)}")
+
+#     # on affiche les prochaines images au joueur
+#     global joueur1_image
+#     joueur1_image = resize_cards(f'Cartes/{joueur_1[0][0]}.png')
+#     joueur1_label.config(image=joueur1_image)
+
+#     global joueur2_image
+#     joueur2_image = resize_cards(f'Cartes/{joueur_2[0][0]}.png')
+#     joueur2_label.config(image=joueur2_image)
 
 #on travail toujours sur une fonction pour automatiser le jeu mais il
 # y a des problemes avec l'affichage des images
@@ -220,11 +222,11 @@ joueur1_label.pack(pady=20)
 joueur2_label = Label(joueur2_frame, text='')
 joueur2_label.pack(pady=20)
 
-joueur_1_listbox = Listbox(joueur1_frame)
-joueur_2_listbox = Listbox(joueur2_frame)
+# joueur_1_listbox = Listbox(joueur1_frame)
+# joueur_2_listbox = Listbox(joueur2_frame)
 
-joueur_1_listbox.pack(pady=10)
-joueur_2_listbox.pack(pady=10)
+# joueur_1_listbox.pack(pady=10)
+# joueur_2_listbox.pack(pady=10)
 
 # Créer un bouton pour démarrer le jeu et jouer aux cartes
 commence_button = Button(root, text="Commencer", font=("Helvetica", 14), command=commencer)
@@ -233,8 +235,8 @@ commence_button.pack(pady=10)
 jouer_button = Button(root, text="Jouer", font=("Helvetica", 14), command=Jouer)
 jouer_button.pack(pady=10)
 
-version2_button = Button(root, text="Version 2",font=("Helvetica", 14), command=version2)
-version2_button.pack(pady=10)
+# version2_button = Button(root, text="Version 2",font=("Helvetica", 14), command=version2)
+# version2_button.pack(pady=10)
 
 
 # le bouton de loop n'est pas prêt
