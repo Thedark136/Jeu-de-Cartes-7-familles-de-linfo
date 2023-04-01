@@ -16,7 +16,7 @@ root.title('Nsi Project 3')
 root.geometry("1000x550")
 #la image de la background
 
-bg = PhotoImage(file="images/nsi background.png")
+bg = PhotoImage(file="images/icon.png")
 # Create Canvas
 canvas = Canvas( root, width = 1000, height = 550)
 canvas.pack(fill = "both", expand = True)
@@ -82,7 +82,7 @@ def resize_cards(card):
 
 
 # fonction pour commence le jeux
-def commencer():
+def commencer1():
     # on melange le cartes pour les preparer a diffuser aux 2 joueurs
     cartes = mélanger(les_cartes)
     global joueur_1
@@ -95,7 +95,25 @@ def commencer():
         joueur_2.append(cartes[i+1])
     #changer le boutton pour rejouer
     commence_button.config(text="Rejouer")
+    joueur1_frame.config(text=f"Joueur 1 - Cartes :  {len(joueur_1)}")
+    joueur2_frame.config(text=f"Joueur 2 - Cartes :  {len(joueur_2)}")
 
+def commencer2():
+    # on melange le cartes pour les preparer a diffuser aux 2 joueurs
+    cartes = mélanger(les_cartes)
+    global joueur_1
+    global joueur_2
+    joueur_1 = []
+    joueur_2 = []
+    #une loop pour distribuer les cartes melangees
+    for i in range (0,len(cartes),2):
+        joueur_1.append(cartes[i])
+        joueur_2.append(cartes[i+1])
+    #changer le boutton pour rejouer
+    commence_button.config(text="Rejouer")
+    update_listbox(joueur_1, joueur_2)
+    joueur1_frame.config(text=f"Joueur 1 - Cartes :  {len(joueur_1)}")
+    joueur2_frame.config(text=f"Joueur 2 - Cartes :  {len(joueur_2)}")
 
 def Jouer():
     #initialisation des nombres de victoire
@@ -201,6 +219,7 @@ def version2():
 
 
 def choisir1():
+
     carte_1 = joueur_1_listbox.get(ANCHOR)
     
     for i in range(len(joueur_1)):
@@ -232,22 +251,26 @@ def choisir2():
 
 
 def vers1():
+    global commence_button
     vers1_button.destroy()
     vers2_button.destroy()
     # Créer un bouton pour démarrer le jeu et jouer aux cartes
     jouer_button = Button(canvas, text="Jouer", font=("Helvetica", 14), command=Jouer)
     jouer_button.pack(pady=10)
-    commence_button = Button(canvas, text="Commencer", font=("Helvetica", 14), command=commencer)
+    commence_button = Button(canvas, text="Commencer", font=("Helvetica", 14), command=commencer1)
     commence_button.pack(pady=10)
 
 
 def vers2():
+    global commence_button
+    global joueur_1_listbox
+    global joueur_2_listbox
     vers1_button.destroy()
     vers2_button.destroy()
     # Créer un bouton pour démarrer le jeu et jouer aux cartes
-    jouer_button = Button(canvas, text="Jouer", font=("Helvetica", 14), command=Jouer)
+    jouer_button = Button(canvas, text="Jouer", font=("Helvetica", 14), command=version2)
     jouer_button.pack(pady=10)
-    commence_button = Button(canvas, text="Commencer", font=("Helvetica", 14), command=version2 and commencer)
+    commence_button = Button(canvas, text="Commencer", font=("Helvetica", 14), command=commencer2)
     commence_button.pack(pady=10)
 
     
@@ -256,6 +279,7 @@ def vers2():
     joueur_1_listbox.grid(row=0, column=0, padx=15)
     joueur_2_listbox.grid(row=0, column=3, padx= 15)
     
+
     choisir_1_button = Button(my_frame, text="Choisir",font=("Helvetica", 14), command=choisir1)
     choisir_2_button = Button(my_frame, text="Choisir",font=("Helvetica", 14), command=choisir2)
     
