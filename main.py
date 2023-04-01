@@ -4,11 +4,11 @@
 #  / /|  /___/ // /    ___/ / 
 # /_/ |_//____/___/   /____/  
 
-# on importe les librairies pour le ui et le jeu
+# on importe les librairies pour l'interface graphique et le jeu
 from tkinter import *
 import random
 from PIL import Image, ImageTk
-import time
+
 
 root = Tk()
 root.title('Nsi Project 3')
