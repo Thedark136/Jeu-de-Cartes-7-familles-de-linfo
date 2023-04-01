@@ -18,7 +18,7 @@ root.geometry("1000x550")
 
 bg = PhotoImage(file="images/icon.png")
 # Create Canvas
-canvas = Canvas( root, width = 1000, height = 550)
+canvas = Canvas(root, width = 1000, height = 550)
 canvas.pack(fill = "both", expand = True)
 # Display image
 canvas.create_image( 0, 0, image = bg, anchor = "nw")
@@ -39,6 +39,7 @@ les_cartes = {
     "Systèmes & réseaux":[("Alexander Graham Bell",1), ("Claude Shannon",2), ("Vinton Cerf",3), ("Tim Berners-Lee",4), ("Pascale Vicat-Blanc",5), ("Anne-Marie Kermarrec",6)],
     "Joker":[("Alan Turing",7),("Alan Turing",7)]
 }
+
 
 
 # fonction qui prend toutes les cartes et les rangent dans une liste
@@ -66,7 +67,6 @@ def init():
     joueur2_label.config(image=joueur2_image)
 
 
-
 # Redimensionner les cartes
 def resize_cards(card):
 	# Ouvrir l'image
@@ -78,7 +78,6 @@ def resize_cards(card):
 	our_card_image = ImageTk.PhotoImage(our_card_resize_image)
 	# Renvoyez cette carte
 	return our_card_image
-
 
 
 # fonction pour commence le jeux
@@ -115,7 +114,7 @@ def commencer2():
     joueur1_frame.config(text=f"Joueur 1 - Cartes :  {len(joueur_1)}")
     joueur2_frame.config(text=f"Joueur 2 - Cartes :  {len(joueur_2)}")
 
-def Jouer():
+def Jouer1():
     #initialisation des nombres de victoire
     joueur_1_victoire = 0
     joueur_2_victoire = 0
@@ -174,7 +173,7 @@ def update_listbox(joueur_1, joueur_2):
         joueur_2_listbox.insert(i, joueur_2[i][0])
 
 # cette partie du code est toujours en developement
-def version2():
+def Jouer2():
     #initialisation des nombres de victoire
     joueur_1_victoire = 0
     joueur_2_victoire = 0
@@ -255,7 +254,7 @@ def vers1():
     vers1_button.destroy()
     vers2_button.destroy()
     # Créer un bouton pour démarrer le jeu et jouer aux cartes
-    jouer_button = Button(canvas, text="Jouer", font=("Helvetica", 14), command=Jouer)
+    jouer_button = Button(canvas, text="Jouer", font=("Helvetica", 14), command=Jouer1)
     jouer_button.pack(pady=10)
     commence_button = Button(canvas, text="Commencer", font=("Helvetica", 14), command=commencer1)
     commence_button.pack(pady=10)
@@ -268,7 +267,7 @@ def vers2():
     vers1_button.destroy()
     vers2_button.destroy()
     # Créer un bouton pour démarrer le jeu et jouer aux cartes
-    jouer_button = Button(canvas, text="Jouer", font=("Helvetica", 14), command=version2)
+    jouer_button = Button(canvas, text="Jouer", font=("Helvetica", 14), command=Jouer2)
     jouer_button.pack(pady=10)
     commence_button = Button(canvas, text="Commencer", font=("Helvetica", 14), command=commencer2)
     commence_button.pack(pady=10)
