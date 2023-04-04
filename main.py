@@ -97,6 +97,14 @@ def commencer1():
     joueur1_frame.config(text=f"Joueur 1 - Cartes :  {len(joueur_1)}")
     joueur2_frame.config(text=f"Joueur 2 - Cartes :  {len(joueur_2)}")
 
+    global joueur1_image
+    joueur1_image = resize_cards(f'Cartes/{joueur_1[0][0]}.png')
+    joueur1_label.config(image=joueur1_image)
+    
+    global joueur2_image
+    joueur2_image = resize_cards(f'Cartes/{joueur_2[0][0]}.png')
+    joueur2_label.config(image=joueur2_image)
+
 def commencer2():
     # on melange le cartes pour les preparer a diffuser aux 2 joueurs
     cartes = mélanger(les_cartes)
