@@ -16,7 +16,7 @@ root.title('Nsi Project 3')
 root.geometry("1000x550")
 #la image de la background
 
-bg = PhotoImage(file="images/icon.png")
+bg = PhotoImage(file="images/nsi background.png")
 # Create Canvas
 canvas = Canvas(root, width = 1000, height = 550)
 canvas.pack(fill = "both", expand = True)
