@@ -146,13 +146,13 @@ def Jouer2():
         print("Joueur 1 gagne la manche")
         firstDeck.append(secondDeck[0])
         firstDeck.append(firstDeck.pop(0))
-        del secondDeck[0]
+        secondDeck.remove(secondDeck[0])
     
     elif secondDeck[0][1]>firstDeck[0][1]:
         print("Joueur 2 gagne la manche")
         secondDeck.append(firstDeck[0])
         secondDeck.append(secondDeck.pop(0))
-        del firstDeck[0]
+        secondDeck.remove(secondDeck[0])
     else:
         print("égalité")
         firstDeck.append(firstDeck.pop(0))
