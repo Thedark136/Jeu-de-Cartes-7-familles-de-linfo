@@ -35,10 +35,10 @@ def resizeGrid(card):
     return our_card_image
 def init():
     global joueur1_image
-    joueur1_image = resize_cards(f'Cartes/back.png')
+    joueur1_image = resize_cards('Cartes/back.png')
     holderLabel1.config(image=joueur1_image)
     global joueur2_image
-    joueur2_image = resize_cards(f'Cartes/back.png')
+    joueur2_image = resize_cards('Cartes/back.png')
     holderLabel2.config(image=joueur2_image)
 # function of distribution
 def distributeDeck() :
@@ -55,6 +55,10 @@ def deckDisplay ():
     # globals
     global imageList1
     global imageList2
+    global gridList1
+    global gridList2
+    global cardGrid1
+    global cardGrid2
     startButton.destroy()
     quitButton.grid(row= 8, column= 1)
     # cardGrid layout
@@ -103,7 +107,7 @@ def deckDisplay ():
     graveyard.grid(row=1, column=1)
 def Quit():
     root.destroy()
-# start up layout
+# pre game layout
 holderLabel1 = Label(mainGrid, text = '.')
 holderLabel2 = Label(mainGrid, text = '.')
 holderLabel1.grid(row= 1, column= 0)
@@ -112,7 +116,6 @@ startButton = Button(mainGrid, text="Commencer", command=deckDisplay, width=30, 
 startButton.grid(row= 1, column= 1)
 quitButton = Button(mainGrid, text="Sortir", command=Quit, width=30, font=("Helvetica", 18), borderwidth=0)
 quitButton.grid(row= 2, column= 1)
-# game mechanics - coming soon
 listCards = [
     ("Jules César",1),("AL-Kindi",2),("Diffie Hellman",3),("Rivest-Shamir-Adleman (RSA)",4),
     ("Shafi Goldwasser",5),("Cynthia Dwork",6),("Al-Khwarizmi",1), ("Ada Lovelace",2), ("Grace Hopper",3),
@@ -133,8 +136,9 @@ dictionnaryCards = {
     "Interaction Homme-Machine":[("Doug Engelbart",1), ("Ted Nelson",2), ("Alan Kay",3), ("Joëlle Coutaz",4), ("Jean-Marie Hullot",5), ("Marie-Paule Cani",6)],
     "Systèmes & réseaux":[("Alexander Graham Bell",1), ("Claude Shannon",2), ("Vinton Cerf",3), ("Tim Berners-Lee",4), ("Pascale Vicat-Blanc",5), ("Anne-Marie Kermarrec",6)],
 }
+# game mechanics - coming soon
 
-
+    
 
 init()
 root.mainloop()
