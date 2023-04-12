@@ -5,12 +5,12 @@ from PIL import Image, ImageTk
 root = Tk()
 root.title('Jeu tro op')
 root.attributes('-fullscreen', True)
-root.configure(background="#393646")
+root.configure(background="#2D2727")
 icon = PhotoImage(file = "images/icon.png")
 root.iconphoto(False, icon)
 root.resizable(0,0)
 mainGrid = Frame(root)
-mainGrid.configure(background="#393646")
+mainGrid.configure(background="#2D2727")
 username1 = Label(mainGrid, text= "Joueur 1", font=("Helvetica", 16))
 username2 = Label(mainGrid, text= "Joueur 2", font=("Helvetica", 16))
 # configuring the first grid, 3 columns
@@ -60,14 +60,14 @@ def Start ():
     # cardGrid layout
     distributeDeck()
     cardGrid1 = Frame(mainGrid)
-    cardGrid1.configure(pady=50, background="#393646")
+    cardGrid1.configure(pady=50, background="#2D2727")
     cardGrid1.columnconfigure(0, weight=1)
     cardGrid1.columnconfigure(1, weight=1)
     cardGrid1.columnconfigure(2, weight=1)
     cardGrid1.columnconfigure(3, weight=1)
     cardGrid1.columnconfigure(4, weight=1)
     cardGrid2 = Frame(mainGrid)
-    cardGrid2.configure(pady=50, background= "#393646")
+    cardGrid2.configure(pady=50, background= "#2D2727")
     cardGrid2.columnconfigure(0, weight=1)
     cardGrid2.columnconfigure(1, weight=1)
     cardGrid2.columnconfigure(2, weight=1)
@@ -82,7 +82,7 @@ def Start ():
     for i in range (2):
         for j in range (5) :
             imageList1[cardCounter1] = resizeGrid(f'Cartes/{firstDeck[cardCounter1][0]}.png')
-            gridList1[cardCounter1] = Label(cardGrid1, text= ... )
+            gridList1[cardCounter1] = Button(cardGrid1, text= ..., background="#2D2727", borderwidth=0)
             gridList1[cardCounter1].config(image = imageList1[cardCounter1])
             gridList1[cardCounter1].grid(row = i, column = j)
             cardGrid1.grid(row=2, column=0)
@@ -90,17 +90,12 @@ def Start ():
     cardCounter2 = 0
     for i in range (2):
         for j in range (5) :
-            textImage = Label(cardGrid2, text= f"{cardCounter2}.")
-            textImage.grid(row = i+1, column = j)
             imageList2[cardCounter2] = resizeGrid(f'Cartes/{secondDeck[cardCounter2][0]}.png')
-            gridList2[cardCounter2] = Label(cardGrid2)
-            gridList2[cardCounter2].config(image = imageList2[cardCounter2], padx=100)
+            gridList2[cardCounter2] = Button(cardGrid2, text= ..., background="#2D2727", borderwidth=0)
+            gridList2[cardCounter2].config(image = imageList2[cardCounter2])
             gridList2[cardCounter2].grid(row = i+1, column = j+1)
             cardGrid2.grid(row=2, column=2)                
             cardCounter2 += 1
-def on_click(event=None):
-    print("image clicked")
-    
 def Quit():
     root.destroy()
 # start up layout
@@ -108,9 +103,9 @@ holderLabel1 = Label(mainGrid, text = '.')
 holderLabel2 = Label(mainGrid, text = '.')
 holderLabel1.grid(row= 1, column= 0)
 holderLabel2.grid(row= 1, column= 2)
-startButton = Button(mainGrid, text="Commencer", command=Start, width=30, font=("Helvetica", 18))
+startButton = Button(mainGrid, text="Commencer", command=Start, width=30, font=("Helvetica", 18), borderwidth=0)
 startButton.grid(row= 1, column= 1)
-quitButton = Button(mainGrid, text="Sortir", command=Quit, width=30, font=("Helvetica", 18))
+quitButton = Button(mainGrid, text="Sortir", command=Quit, width=30, font=("Helvetica", 18), borderwidth=0)
 quitButton.grid(row= 2, column= 1)
 listCards = [
     ("Jules César",1),("AL-Kindi",2),("Diffie Hellman",3),("Rivest-Shamir-Adleman (RSA)",4),
