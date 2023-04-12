@@ -50,6 +50,9 @@ def distributeDeck() :
     return ([firstDeck, secondDeck])
 # function to start the game, alters the layout
 def Start ():
+    # globals
+    global imageList1
+    global imageList2
     startButton.destroy()
     # cardGrid layout
     distributeDeck()
@@ -68,23 +71,23 @@ def Start ():
     # displays the cards
     gridList1 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
     gridList2 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    imageList1 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    imageList2 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
     cardCounter1 = 0
     for i in range (2):
         for j in range (5) :
-            global gridImage1
-            gridImage1 = resizeGrid(f'Cartes/{firstDeck[cardCounter1][0]}.png')
+            imageList1[cardCounter1] = resizeGrid(f'Cartes/{firstDeck[cardCounter1][0]}.png')
             gridList1[cardCounter1] = Label(cardGrid1, text= ... )
-            gridList1[cardCounter1].config(image = gridImage1)
+            gridList1[cardCounter1].config(image = imageList1[cardCounter1])
             gridList1[cardCounter1].grid(row = i, column = j)
             cardGrid1.grid(row=2, column=0)
             cardCounter1 += 1
     cardCounter2 = 0
     for i in range (2):
         for j in range (5) :
-            global gridImage2
-            gridImage2 = resizeGrid(f'Cartes/{secondDeck[cardCounter2][0]}.png')
+            imageList2[cardCounter2] = resizeGrid(f'Cartes/{secondDeck[cardCounter2][0]}.png')
             gridList2[cardCounter2] = Label(cardGrid2, text= ... )
-            gridList2[cardCounter2].config(image = gridImage2)
+            gridList2[cardCounter2].config(image = imageList2[cardCounter2])
             gridList2[cardCounter2].grid(row = i, column = j)
             cardGrid2.grid(row=2, column=2)                
             cardCounter2 += 1
