@@ -4,11 +4,13 @@ from PIL import Image, ImageTk
 # base of the root
 root = Tk()
 root.title('Jeu tro op')
-root.geometry('1360x768')
+root.attributes('-fullscreen', True)
+root.configure(background="#393646")
 icon = PhotoImage(file = "images/icon.png")
 root.iconphoto(False, icon)
 root.resizable(0,0)
 mainGrid = Frame(root)
+mainGrid.configure(background="#393646")
 username1 = Label(mainGrid, text= "Joueur 1", font=("Helvetica", 16))
 username2 = Label(mainGrid, text= "Joueur 2", font=("Helvetica", 16))
 # configuring the first grid, 3 columns
@@ -54,15 +56,18 @@ def Start ():
     global imageList1
     global imageList2
     startButton.destroy()
+    quitButton.grid(row= 8, column= 1)
     # cardGrid layout
     distributeDeck()
     cardGrid1 = Frame(mainGrid)
+    cardGrid1.configure(pady=50, background="#393646")
     cardGrid1.columnconfigure(0, weight=1)
     cardGrid1.columnconfigure(1, weight=1)
     cardGrid1.columnconfigure(2, weight=1)
     cardGrid1.columnconfigure(3, weight=1)
     cardGrid1.columnconfigure(4, weight=1)
     cardGrid2 = Frame(mainGrid)
+    cardGrid2.configure(pady=50, background= "#393646")
     cardGrid2.columnconfigure(0, weight=1)
     cardGrid2.columnconfigure(1, weight=1)
     cardGrid2.columnconfigure(2, weight=1)
@@ -91,6 +96,9 @@ def Start ():
             gridList2[cardCounter2].grid(row = i, column = j)
             cardGrid2.grid(row=2, column=2)                
             cardCounter2 += 1
+            
+def Quit():
+    root.destroy()
 # start up layout
 holderLabel1 = Label(mainGrid, text = '.')
 holderLabel2 = Label(mainGrid, text = '.')
@@ -98,6 +106,8 @@ holderLabel1.grid(row= 1, column= 0)
 holderLabel2.grid(row= 1, column= 2)
 startButton = Button(mainGrid, text="Commencer", command=Start, width=30, font=("Helvetica", 18))
 startButton.grid(row= 1, column= 1)
+quitButton = Button(mainGrid, text="Sortir", command=Quit, width=30, font=("Helvetica", 18))
+quitButton.grid(row= 2, column= 1)
 listCards = [
     ("Jules César",1),("AL-Kindi",2),("Diffie Hellman",3),("Rivest-Shamir-Adleman (RSA)",4),
     ("Shafi Goldwasser",5),("Cynthia Dwork",6),("Al-Khwarizmi",1), ("Ada Lovelace",2), ("Grace Hopper",3),
@@ -143,7 +153,7 @@ dictionnaryCards = {
 
 
 
-    # # TO READ - pour display les cartes jessayi de faire ca bas ma meshe l7al iza bte2daro t7elouwa send help
+    # # TO READ - pour display les cartes jessayi de faire ca bas ma meshe l7al iza bte2daro t7elouwa send help --- im as lost as you are brother
     # for i in listCards : # first deck
     #     for j in firstDeck :
     #         if i == j :
