@@ -80,7 +80,7 @@ def Start ():
             gridList1[cardCounter1] = Label(cardGrid1, text= ... )
             gridList1[cardCounter1].config(image = imageList1[cardCounter1])
             gridList1[cardCounter1].grid(row = i, column = j)
-            cardGrid1.grid(row=2, column=0)
+            cardGrid1.grid(row=2, column=0, pady=20)
             cardCounter1 += 1
     cardCounter2 = 0
     for i in range (2):
@@ -88,8 +88,8 @@ def Start ():
             imageList2[cardCounter2] = resizeGrid(f'Cartes/{secondDeck[cardCounter2][0]}.png')
             gridList2[cardCounter2] = Label(cardGrid2, text= ... )
             gridList2[cardCounter2].config(image = imageList2[cardCounter2])
-            gridList2[cardCounter2].grid(row = i, column = j)
-            cardGrid2.grid(row=2, column=2)                
+            gridList2[cardCounter2].grid(row = i, column = j,)
+            cardGrid2.grid(row=2, column=2, pady= 20)                
             cardCounter2 += 1
 # start up layout
 holderLabel1 = Label(mainGrid, text = '.')
