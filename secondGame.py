@@ -51,7 +51,7 @@ def distributeDeck() :
     cemetary = [listCards[i] for i in range (20, 40)]
     return ([firstDeck, secondDeck])
 # function to start the game, alters the layout
-def Start ():
+def deckDisplay ():
     # globals
     global imageList1
     global imageList2
@@ -82,7 +82,7 @@ def Start ():
     for i in range (2):
         for j in range (5) :
             imageList1[cardCounter1] = resizeGrid(f'Cartes/{firstDeck[cardCounter1][0]}.png')
-            gridList1[cardCounter1] = Button(cardGrid1, text= ..., background="#2D2727", borderwidth=0)
+            gridList1[cardCounter1] = Button(cardGrid1, text= ..., background="#2D2727", borderwidth=0) # insert command
             gridList1[cardCounter1].config(image = imageList1[cardCounter1])
             gridList1[cardCounter1].grid(row = i, column = j)
             cardGrid1.grid(row=2, column=0, pady=20)
@@ -91,11 +91,16 @@ def Start ():
     for i in range (2):
         for j in range (5) :
             imageList2[cardCounter2] = resizeGrid(f'Cartes/{secondDeck[cardCounter2][0]}.png')
-            gridList2[cardCounter2] = Button(cardGrid2, text= ..., background="#2D2727", borderwidth=0)
+            gridList2[cardCounter2] = Button(cardGrid2, text= ..., background="#2D2727", borderwidth=0) # insert command
             gridList2[cardCounter2].config(image = imageList2[cardCounter2])
-            gridList2[cardCounter2].grid(row = i+1, column = j+1)
+            gridList2[cardCounter2].grid(row = i, column = j )
             cardGrid2.grid(row=2, column=2)                
             cardCounter2 += 1
+    # displaying the graveyard
+    graveyard = Button(mainGrid, text=..., background="#2D2727", borderwidth=0) # insert command
+    graveyardImage = resize_cards('Cartes/back.png')
+    graveyard.config(image= graveyardImage )
+    graveyard.grid(row=1, column=1)
 def Quit():
     root.destroy()
 # start up layout
@@ -103,10 +108,11 @@ holderLabel1 = Label(mainGrid, text = '.')
 holderLabel2 = Label(mainGrid, text = '.')
 holderLabel1.grid(row= 1, column= 0)
 holderLabel2.grid(row= 1, column= 2)
-startButton = Button(mainGrid, text="Commencer", command=Start, width=30, font=("Helvetica", 18), borderwidth=0)
+startButton = Button(mainGrid, text="Commencer", command=deckDisplay, width=30, font=("Helvetica", 18), borderwidth=0)
 startButton.grid(row= 1, column= 1)
 quitButton = Button(mainGrid, text="Sortir", command=Quit, width=30, font=("Helvetica", 18), borderwidth=0)
 quitButton.grid(row= 2, column= 1)
+# game mechanics - coming soon
 listCards = [
     ("Jules César",1),("AL-Kindi",2),("Diffie Hellman",3),("Rivest-Shamir-Adleman (RSA)",4),
     ("Shafi Goldwasser",5),("Cynthia Dwork",6),("Al-Khwarizmi",1), ("Ada Lovelace",2), ("Grace Hopper",3),
@@ -129,63 +135,6 @@ dictionnaryCards = {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    # # TO READ - pour display les cartes jessayi de faire ca bas ma meshe l7al iza bte2daro t7elouwa send help --- im as lost as you are brother
-    # for i in listCards : # first deck
-    #     for j in firstDeck :
-    #         if i == j :
-    #             if y <= 4 :
-    #                 value = Label(cardGrid1, text='.')
-    #                 value.grid(row=x, column=y)
-    #                 value.config(image=f'{i[0]}.png')
-    #                 y = y + 1 
-    #             else :
-    #                 y = 0
-    #                 x = x + 1
-    #                 value = Label(cardGrid1, text='.')
-    #                 value.grid(row=x, column=y)
-    #                 value.config(image=f'{i[0]}.png')
-    # cardGrid1.pack()
-    # value = 0
-    # x = 0
-    # y = 0
-    # for i in listCards : # second deck
-    #     for j in secondDeck :
-    #         if i == j :
-    #             if y <= 4 :
-    #                 value = Label(cardGrid2, text='.')
-    #                 value.grid(row=x, column=y)
-    #                 value.config(image=f'{i[0]}.png')
-    #                 y = y + 1
-    #             else :
-    #                 y = 0
-    #                 x = x + 1
-    #                 value = Label(cardGrid2, text='.')
-    #                 value.grid(row=x, column=y)
-    #                 value.config(image=f'{i[0]}.png')
-    # cardGrid2.pack()
 
 init()
 root.mainloop()
