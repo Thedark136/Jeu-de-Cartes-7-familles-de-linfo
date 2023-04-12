@@ -27,7 +27,8 @@ def resize_cards(card):
 	return our_card_image
 def resizeGrid(card):
     our_card_img = Image.open(card)
-    our_card_resize_image = our_card_img.resize((50, 74))
+    our_card_resize_image = our_card_img.resize((80, 133))
+    global our_card_image
     our_card_image = ImageTk.PhotoImage(our_card_resize_image)
     return our_card_image
 def init():
@@ -64,47 +65,29 @@ def Start ():
     cardGrid2.columnconfigure(2, weight=1)
     cardGrid2.columnconfigure(3, weight=1)
     cardGrid2.columnconfigure(4, weight=1)
-    value = 0
-    x = 0
-    y = 0
     # displays the cards
-    # TO READ - pour display les cartes jessayi de faire ca bas ma meshe l7al iza bte2daro t7elouwa send help
-    for i in listCards : # first deck
-        for j in firstDeck :
-            if i == j :
-                if y <= 4 :
-                    value = Label(cardGrid1, text='.')
-                    value.grid(row=x, column=y)
-                    value.config(image=f'{i[0]}.png')
-                    y = y + 1 
-                else :
-                    y = 0
-                    x = x + 1
-                    value = Label(cardGrid1, text='.')
-                    value.grid(row=x, column=y)
-                    value.config(image=f'{i[0]}.png')
-    cardGrid1.pack()
-    value = 0
-    x = 0
-    y = 0
-    for i in listCards : # second deck
-        for j in secondDeck :
-            if i == j :
-                if y <= 4 :
-                    value = Label(cardGrid2, text='.')
-                    value.grid(row=x, column=y)
-                    value.config(image=f'{i[0]}.png')
-                    y = y + 1
-                else :
-                    y = 0
-                    x = x + 1
-                    value = Label(cardGrid2, text='.')
-                    value.grid(row=x, column=y)
-                    value.config(image=f'{i[0]}.png')
-    cardGrid2.pack()
-
-                
-    return("Ya mar7aba")
+    gridList1 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    gridList2 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    cardCounter1 = 0
+    for i in range (2):
+        for j in range (5) :
+            global gridImage1
+            gridImage1 = resizeGrid(f'Cartes/{firstDeck[cardCounter1][0]}.png')
+            gridList1[cardCounter1] = Label(cardGrid1, text= ... )
+            gridList1[cardCounter1].config(image = gridImage1)
+            gridList1[cardCounter1].grid(row = i, column = j)
+            cardGrid1.grid(row=2, column=0)
+            cardCounter1 += 1
+    cardCounter2 = 0
+    for i in range (2):
+        for j in range (5) :
+            global gridImage2
+            gridImage2 = resizeGrid(f'Cartes/{secondDeck[cardCounter2][0]}.png')
+            gridList2[cardCounter2] = Label(cardGrid2, text= ... )
+            gridList2[cardCounter2].config(image = gridImage2)
+            gridList2[cardCounter2].grid(row = i, column = j)
+            cardGrid2.grid(row=2, column=2)                
+            cardCounter2 += 1
 # start up layout
 holderLabel1 = Label(mainGrid, text = '.')
 holderLabel2 = Label(mainGrid, text = '.')
@@ -157,25 +140,40 @@ dictionnaryCards = {
 
 
 
-# TO READ - pour display les cartes jessayi de faire ca bas ma meshe l7al iza bte2daro t7elouwa send help
-    #cardCounter1 = 0
-    #for i in range (2):
-        #for j in range (5) :
-            #value = vars(firstDeck[cardCounter1][0])
-            #value = Label(cardGrid1, text= "." )
-            # value.config(image=f'{firstDeck[cardCounter1][0]}.png')
-            # value.grid(row = i, column = j)
-            # cardCounter1 += 1
+    # # TO READ - pour display les cartes jessayi de faire ca bas ma meshe l7al iza bte2daro t7elouwa send help
+    # for i in listCards : # first deck
+    #     for j in firstDeck :
+    #         if i == j :
+    #             if y <= 4 :
+    #                 value = Label(cardGrid1, text='.')
+    #                 value.grid(row=x, column=y)
+    #                 value.config(image=f'{i[0]}.png')
+    #                 y = y + 1 
+    #             else :
+    #                 y = 0
+    #                 x = x + 1
+    #                 value = Label(cardGrid1, text='.')
+    #                 value.grid(row=x, column=y)
+    #                 value.config(image=f'{i[0]}.png')
     # cardGrid1.pack()
-    # cardCounter2 = 0
-    # for i in range (2):
-    #     for j in range (5) :
-    #         value = vars(secondDeck[cardCounter2][0])
-    #         value = Label(cardGrid1, text=".")
-    #         value.config(image=f'{firstDeck[cardCounter1][0]}.png')
-    #         value.grid(row = i, column = j)
-    #         cardCounter2 += 1
-    # cardGrid2.pack()         
+    # value = 0
+    # x = 0
+    # y = 0
+    # for i in listCards : # second deck
+    #     for j in secondDeck :
+    #         if i == j :
+    #             if y <= 4 :
+    #                 value = Label(cardGrid2, text='.')
+    #                 value.grid(row=x, column=y)
+    #                 value.config(image=f'{i[0]}.png')
+    #                 y = y + 1
+    #             else :
+    #                 y = 0
+    #                 x = x + 1
+    #                 value = Label(cardGrid2, text='.')
+    #                 value.grid(row=x, column=y)
+    #                 value.config(image=f'{i[0]}.png')
+    # cardGrid2.pack()
 
 init()
 root.mainloop()
