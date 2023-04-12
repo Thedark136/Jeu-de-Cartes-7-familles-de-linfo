@@ -90,13 +90,17 @@ def Start ():
     cardCounter2 = 0
     for i in range (2):
         for j in range (5) :
+            textImage = Label(cardGrid2, text= f"{cardCounter2}.")
+            textImage.grid(row = i+1, column = j)
             imageList2[cardCounter2] = resizeGrid(f'Cartes/{secondDeck[cardCounter2][0]}.png')
-            gridList2[cardCounter2] = Label(cardGrid2, text= ... )
-            gridList2[cardCounter2].config(image = imageList2[cardCounter2])
-            gridList2[cardCounter2].grid(row = i, column = j)
+            gridList2[cardCounter2] = Label(cardGrid2)
+            gridList2[cardCounter2].config(image = imageList2[cardCounter2], padx=100)
+            gridList2[cardCounter2].grid(row = i+1, column = j+1)
             cardGrid2.grid(row=2, column=2)                
             cardCounter2 += 1
-            
+def on_click(event=None):
+    print("image clicked")
+    
 def Quit():
     root.destroy()
 # start up layout
