@@ -136,8 +136,8 @@ def button_press2(event):
 def Quit():
     root.destroy()
 
-def message():
-    text['text'] = 'I like ice cream'
+def message(message):
+    text['text'] = message
 
 def Jouer():
     carte1 = holderLabel1.cget('text')
@@ -146,7 +146,7 @@ def Jouer():
     if dictionnaryCards[carte1][1]>dictionnaryCards[carte2][1]:
         text = Label(mainGrid, text='Joueur 1 a gagné')
         text.grid(row=2, column=1)
-        root.after(1000, message)
+        root.after(1000, lambda: message("Ice cream"))
        
 
 
