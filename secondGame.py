@@ -91,7 +91,7 @@ def deckDisplay ():
         for j in range (5) :
             imageList1[cardCounter1] = resizeGrid(f'Cartes/{firstDeck[cardCounter1][0]}.png')
             cards.append(f'Cartes/{firstDeck[cardCounter1][0]}.png')
-            gridList1[cardCounter1] = Button(cardGrid1, text= ..., background="#2D2727", borderwidth=0)
+            gridList1[cardCounter1] = Button(cardGrid1, text=firstDeck[cardCounter1][0], background="#2D2727", borderwidth=0)
             gridList1[cardCounter1].bind('<Button-1>', button_press1)
             gridList1[cardCounter1].config(image = imageList1[cardCounter1])
             gridList1[cardCounter1].grid(row = i, column = j)
@@ -102,7 +102,7 @@ def deckDisplay ():
         for j in range (5) :
             imageList2[cardCounter2] = resizeGrid(f'Cartes/{secondDeck[cardCounter2][0]}.png')
             cards.append(f'Cartes/{secondDeck[cardCounter2][0]}.png')
-            gridList2[cardCounter2] = Button(cardGrid2, text= ..., background="#2D2727", borderwidth=0)
+            gridList2[cardCounter2] = Button(cardGrid2, text= secondDeck[cardCounter2][0], background="#2D2727", borderwidth=0)
             gridList2[cardCounter2].bind('<Button-1>', button_press2)
             gridList2[cardCounter2].config(image = imageList2[cardCounter2])
             gridList2[cardCounter2].grid(row = i, column = j)
@@ -116,16 +116,32 @@ def deckDisplay ():
 def button_press1(event):
     button = event.widget
     image = button.cget('image')
+    text = button.cget('text')
     holderLabel1.config(image=image)
+    holderLabel1.config(text=text)
 def button_press2(event):
     button = event.widget
     image = button.cget('image')
+    text = button.cget('text')
     holderLabel2.config(image=image)
+    holderLabel2.config(text=text)
 def Quit():
     root.destroy()
 
 def Jouer():
-    pass
+    carte1 = holderLabel1.cget('text')
+    carte2 = holderLabel2.cget('text')
+
+    if dictionnaryCards[carte1][1]>dictionnaryCards[carte2][1]:
+        next_step = 'Joueur 1 a gagné'
+
+    elif dictionnaryCards[carte2][1]>dictionnaryCards[carte1][1]:
+        next_step = 'Joueur 2 a gagné'
+    
+    else:
+        next_step = 'égalité'
+    text = Label(mainGrid, text=next_step)
+    text.grid(row=2, column=1)
 # start up layout
 holderLabel1 = Label(mainGrid, text = '.')
 holderLabel2 = Label(mainGrid, text = '.')
