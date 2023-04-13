@@ -82,11 +82,13 @@ def deckDisplay ():
     gridList2 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
     imageList1 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
     imageList2 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    selectList1 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    selectList2 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
     cardCounter1 = 0
     for i in range (2):
         for j in range (5) :
             imageList1[cardCounter1] = resizeGrid(f'Cartes/{firstDeck[cardCounter1][0]}.png')
-            gridList1[cardCounter1] = Button(cardGrid1, text= ..., background="#2D2727", borderwidth=0) # insert command
+            gridList1[cardCounter1] = Button(cardGrid1, text= cardCounter1, background="#2D2727", borderwidth=0) # insert command
             gridList1[cardCounter1].config(image = imageList1[cardCounter1])
             gridList1[cardCounter1].grid(row = i, column = j)
             cardGrid1.grid(row=2, column=0, pady=20)
@@ -95,7 +97,7 @@ def deckDisplay ():
     for i in range (2):
         for j in range (5) :
             imageList2[cardCounter2] = resizeGrid(f'Cartes/{secondDeck[cardCounter2][0]}.png')
-            gridList2[cardCounter2] = Button(cardGrid2, text= ..., background="#2D2727", borderwidth=0) # insert command
+            gridList2[cardCounter2] = Button(cardGrid2, text= cardCounter2, background="#2D2727", borderwidth=0) # insert command
             gridList2[cardCounter2].config(image = imageList2[cardCounter2])
             gridList2[cardCounter2].grid(row = i, column = j )
             cardGrid2.grid(row=2, column=2)                
@@ -225,6 +227,10 @@ def conditionCheck():
 # draw 2 cards from cemetary
 def drawCards():
     return ([cemetary[0], cemetary[1]])
+# display clicked card 
+
+    
+    
 # to do -
 # function to compare the cards (+ button), inside ya 5 fonctions :
 # 1 - fonction qui montre les choix du gagnats sous formes de 2 bouttons

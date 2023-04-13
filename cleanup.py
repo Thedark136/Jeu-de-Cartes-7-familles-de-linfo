@@ -180,7 +180,7 @@ dictionnaryCards = {
     "Joker":[("Alan Turing",7),("Alan Turing",7)]
 }
 listCards = [
-     ("Jules César",1),("AL-Kindi",2),("Diffie Hellman",3),("Rivest-Shamir-Adleman (RSA)",4),
+    ("Jules César",1),("AL-Kindi",2),("Diffie Hellman",3),("Rivest-Shamir-Adleman (RSA)",4),
     ("Shafi Goldwasser",5),("Cynthia Dwork",6),("Al-Khwarizmi",1), ("Ada Lovelace",2), ("Grace Hopper",3),
     ("Dorothy Vaughan",4), ("Gilles Kahn",5), ("Gérard Berry",6),("Hypatie d'Alexandrie",1), ("George Boole",2),
     ("Alonzo Church",3), ("Jacques-Louis Lions",4), ("Ingrid Daubechies",5), ("Jocelyne Troccaz",6),
@@ -190,11 +190,5 @@ listCards = [
     ("Alan Kay",3), ("Joëlle Coutaz",4), ("Jean-Marie Hullot",5), ("Marie-Paule Cani",6),
     ("Alexander Graham Bell",1),("Claude Shannon",2), ("Vinton Cerf",3), ("Tim Berners-Lee",4), 
     ("Pascale Vicat-Blanc",5), ("Anne-Marie Kermarrec",6),("Alan Turing",7),("Alan Turing",7)]
-
-
-
-
-
-
 init()
 root.mainloop()
