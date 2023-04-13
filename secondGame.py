@@ -146,16 +146,22 @@ def Jouer():
     if dictionnaryCards[carte1][1]>dictionnaryCards[carte2][1]:
         text = Label(mainGrid, text='Joueur 1 a gagné')
         text.grid(row=2, column=1)
-        root.after(1000, lambda: message("Joueur 1, vous avez deux choix :"))
-        root.after(1000, lambda: message("soit prendre les deux cartes sur le terrain, soit bruler les deux cartes"))
+        root.after(5000, lambda: message("Joueur 1, vous avez deux choix :"))
+        root.after(5000, lambda: message("soit prendre les deux cartes sur le terrain, soit bruler les deux cartes"))
        
 
 
     elif dictionnaryCards[carte2][1]>dictionnaryCards[carte1][1]:
-        next_step = 'Joueur 2 a gagné'
+        text = Label(mainGrid, text='Joueur 2 a gagné')
+        text.grid(row=2, column=1)
+        root.after(5000, lambda: message("Joueur 2, vous avez deux choix :"))
+        root.after(5000, lambda: message("soit prendre les deux cartes sur le terrain, soit bruler les deux cartes"))
     
     else:
-        next_step = 'égalité'
+        text = Label(mainGrid, text='Égalité')
+        text.grid(row=2, column=1)
+        root.after(5000, lambda: message("Joueur 1 et Joueur 2, chacun pioche une nouvelle carte"))
+        root.after(5000, lambda: message("et vos cartes sont brulées"))
 # start up layout
 holderLabel1 = Label(mainGrid, text = '.')
 holderLabel2 = Label(mainGrid, text = '.')
