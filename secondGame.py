@@ -21,9 +21,16 @@ username1.grid(row=0, column=0, pady= 20)
 username2.grid(row=0, column=2, pady= 20)
 mainGrid.pack(fill="x")
 # card functions
+# resize for graveyard
+def graveyardSize(card):
+    our_card_img = Image.open(card)
+    our_card_resize_image = our_card_img.resize((170, 110))
+    global our_card_image
+    our_card_image = ImageTk.PhotoImage(our_card_resize_image)
+    return our_card_image
 def resize_cards(card):
 	our_card_img = Image.open(card)
-	our_card_resize_image = our_card_img.resize((130, 200))
+	our_card_resize_image = our_card_img.resize((110, 170))
 	global our_card_image
 	our_card_image = ImageTk.PhotoImage(our_card_resize_image)
 	return our_card_image
@@ -110,7 +117,7 @@ def deckDisplay ():
             cardCounter2 += 1
     # displaying the graveyard
     graveyard = Button(mainGrid, text=..., background="#2D2727", borderwidth=0) # insert command
-    graveyardImage = resize_cards('Cartes/back.png')
+    graveyardImage = graveyardSize('Cartes/front.png')
     graveyard.config(image= graveyardImage )
     graveyard.grid(row=1, column=1)
 def button_press1(event):
