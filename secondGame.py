@@ -55,6 +55,8 @@ def deckDisplay ():
     # preventing the quit button to go down
     # ----
     # globals
+    jouerButton = Button(mainGrid, text='Jouer', command=Jouer, font=("Helvetica", 18), borderwidth=0)
+    jouerButton.grid(row=0, column=1)
     global imageList1
     global imageList2
     startButton.destroy()
@@ -121,11 +123,15 @@ def button_press2(event):
     holderLabel2.config(image=image)
 def Quit():
     root.destroy()
+
+def Jouer():
+    pass
 # start up layout
 holderLabel1 = Label(mainGrid, text = '.')
 holderLabel2 = Label(mainGrid, text = '.')
 holderLabel1.grid(row= 1, column= 0)
 holderLabel2.grid(row= 1, column= 2)
+
 startButton = Button(mainGrid, text="Commencer", command=deckDisplay, width=30, font=("Helvetica", 18), borderwidth=0)
 startButton.grid(row= 1, column= 1)
 quitButton = Button(mainGrid, text="Sortir", command=Quit, width=20, font=("Helvetica", 18), borderwidth=0)
