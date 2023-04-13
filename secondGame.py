@@ -136,18 +136,20 @@ def button_press2(event):
 def Quit():
     root.destroy()
 
+def next(next_step):
+    text.destroy
+    text.config(text=next_step)
+
 def Jouer():
     carte1 = holderLabel1.cget('text')
     carte2 = holderLabel2.cget('text')
-
+    global text
     if dictionnaryCards[carte1][1]>dictionnaryCards[carte2][1]:
         next_step = 'Joueur 1 a gagné'
         text = Label(mainGrid, text=next_step)
         text.grid(row=2, column=1)
-        root.after(1000)
-        next_step = "Joueur 1, vous avez deux choix :"
-        text = Label(mainGrid, text=next_step)
-        text.grid(row=2, column=1)
+        root.after(1000, next("Joueur1, vous avez deux choix :"))
+
 
     elif dictionnaryCards[carte2][1]>dictionnaryCards[carte1][1]:
         next_step = 'Joueur 2 a gagné'
