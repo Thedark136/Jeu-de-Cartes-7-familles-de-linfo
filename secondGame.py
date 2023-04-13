@@ -146,7 +146,8 @@ def Jouer():
     if dictionnaryCards[carte1][1]>dictionnaryCards[carte2][1]:
         text = Label(mainGrid, text='Joueur 1 a gagné')
         text.grid(row=2, column=1)
-        root.after(1000, lambda: message("Ice cream"))
+        root.after(1000, lambda: message("Joueur 1, vous avez deux choix :"))
+        root.after(1000, lambda: message("soit prendre les deux cartes sur le terrain, soit bruler les deux cartes"))
        
 
 
