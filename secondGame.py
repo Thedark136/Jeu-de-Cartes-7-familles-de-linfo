@@ -23,13 +23,13 @@ mainGrid.pack(fill="x")
 # card functions
 def resize_cards(card):
 	our_card_img = Image.open(card)
-	our_card_resize_image = our_card_img.resize((130, 170))
+	our_card_resize_image = our_card_img.resize((130, 200))
 	global our_card_image
 	our_card_image = ImageTk.PhotoImage(our_card_resize_image)
 	return our_card_image
 def resizeGrid(card):
     our_card_img = Image.open(card)
-    our_card_resize_image = our_card_img.resize((80, 150))
+    our_card_resize_image = our_card_img.resize((90, 160))
     global our_card_image
     our_card_image = ImageTk.PhotoImage(our_card_resize_image)
     return our_card_image
