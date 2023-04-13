@@ -136,19 +136,18 @@ def button_press2(event):
 def Quit():
     root.destroy()
 
-def next(next_step):
-    text.destroy
-    text.config(text=next_step)
+def message():
+    text['text'] = 'I like ice cream'
 
 def Jouer():
     carte1 = holderLabel1.cget('text')
     carte2 = holderLabel2.cget('text')
     global text
     if dictionnaryCards[carte1][1]>dictionnaryCards[carte2][1]:
-        next_step = 'Joueur 1 a gagné'
-        text = Label(mainGrid, text=next_step)
+        text = Label(mainGrid, text='Joueur 1 a gagné')
         text.grid(row=2, column=1)
-        root.after(1000, next("Joueur1, vous avez deux choix :"))
+        root.after(1000, message)
+       
 
 
     elif dictionnaryCards[carte2][1]>dictionnaryCards[carte1][1]:
@@ -156,8 +155,6 @@ def Jouer():
     
     else:
         next_step = 'égalité'
-    text = Label(mainGrid, text=next_step)
-    text.grid(row=2, column=1)
 # start up layout
 holderLabel1 = Label(mainGrid, text = '.')
 holderLabel2 = Label(mainGrid, text = '.')
@@ -181,7 +178,7 @@ listCards = [
     ("Pascale Vicat-Blanc",5), ("Anne-Marie Kermarrec",6)]
 dictionnaryCards = {
     "Jules César" : ["Sécurité et confidentialité", 1],
-    "Al-Kindi" : ["Sécurité et confidentialité", 2],
+    "AL-Kindi" : ["Sécurité et confidentialité", 2],
     "Diffie Hellman" : ["Sécurité et confidentialité", 3],
     "Rivest-Shamir-Adleman (RSA)" : ["Sécurité et confidentialité", 4],
     "Shafi Goldwasser" : ["Sécurité et confidentialité", 5],
