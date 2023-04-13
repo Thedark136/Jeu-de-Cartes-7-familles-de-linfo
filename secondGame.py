@@ -1,6 +1,7 @@
 from tkinter import *
 from random import *
 from PIL import Image, ImageTk
+import time
 # base of the root
 root = Tk()
 root.title('Jeu tro op')
@@ -141,6 +142,12 @@ def Jouer():
 
     if dictionnaryCards[carte1][1]>dictionnaryCards[carte2][1]:
         next_step = 'Joueur 1 a gagné'
+        text = Label(mainGrid, text=next_step)
+        text.grid(row=2, column=1)
+        root.after(1000)
+        next_step = "Joueur 1, vous avez deux choix :"
+        text = Label(mainGrid, text=next_step)
+        text.grid(row=2, column=1)
 
     elif dictionnaryCards[carte2][1]>dictionnaryCards[carte1][1]:
         next_step = 'Joueur 2 a gagné'
