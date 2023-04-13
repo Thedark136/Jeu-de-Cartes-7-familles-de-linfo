@@ -109,13 +109,11 @@ def deckDisplay ():
 def button_press1(event):
     button = event.widget
     image = button.cget('image')
-    num = int(image.split("pyimage")[1])-4
-    holderLabel1.config(image=cards[num])
+    holderLabel1.config(image=image)
 def button_press2(event):
     button = event.widget
     image = button.cget('image')
-    num = int(image.split("pyimage")[1])-4
-    holderLabel2.config(image=cards[num])
+    holderLabel2.config(image=image)
 def Quit():
     root.destroy()
 # start up layout
