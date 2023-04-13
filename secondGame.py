@@ -106,6 +106,11 @@ def deckDisplay ():
             gridList2[cardCounter2].grid(row = i, column = j)
             cardGrid2.grid(row=2, column=2)      
             cardCounter2 += 1
+    # displaying the graveyard
+    graveyard = Button(mainGrid, text=..., background="#2D2727", borderwidth=0) # insert command
+    graveyardImage = resize_cards('Cartes/back.png')
+    graveyard.config(image= graveyardImage )
+    graveyard.grid(row=1, column=1)
 def button_press1(event):
     button = event.widget
     image = button.cget('image')
@@ -180,67 +185,6 @@ dictionnaryCards = {
     "Pascale Vicat-Blanc" : ["Systèmes & réseaux", 5],
     "Anne-Marie Kermarrec" : ["Systèmes & réseaux", 6],
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    # # TO READ - pour display les cartes jessayi de faire ca bas ma meshe l7al iza bte2daro t7elouwa send help --- im as lost as you are brother
-    # for i in listCards : # first deck
-    #     for j in firstDeck :
-    #         if i == j :
-    #             if y <= 4 :
-    #                 value = Label(cardGrid1, text='.')
-    #                 value.grid(row=x, column=y)
-    #                 value.config(image=f'{i[0]}.png')
-    #                 y = y + 1 
-    #             else :
-    #                 y = 0
-    #                 x = x + 1
-    #                 value = Label(cardGrid1, text='.')
-    #                 value.grid(row=x, column=y)
-    #                 value.config(image=f'{i[0]}.png')
-    # cardGrid1.pack()
-    # value = 0
-    # x = 0
-    # y = 0
-    # for i in listCards : # second deck
-    #     for j in secondDeck :
-    #         if i == j :
-    #             if y <= 4 :
-    #                 value = Label(cardGrid2, text='.')
-    #                 value.grid(row=x, column=y)
-    #                 value.config(image=f'{i[0]}.png')
-    #                 y = y + 1
-    #             else :
-    #                 y = 0
-    #                 x = x + 1
-    #                 value = Label(cardGrid2, text='.')
-    #                 value.grid(row=x, column=y)
-    #                 value.config(image=f'{i[0]}.png')
-    # cardGrid2.pack()
-# game mechanics - not done
-# function that checks if anyone won the game
 def conditionCheck():
     familyCount1 = {
         "Sécurité et confidentialité":0,
