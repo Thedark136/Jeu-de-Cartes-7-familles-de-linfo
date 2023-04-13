@@ -146,7 +146,7 @@ def Jouer():
     if dictionnaryCards[carte1][1]>dictionnaryCards[carte2][1]:
         text = Label(mainGrid, text='Joueur 1 a gagné')
         text.grid(row=2, column=1)
-        root.after(5000, lambda: message("Joueur 1, vous avez deux choix :"))
+        root.after(2000, lambda: message("Joueur 1, vous avez deux choix :"))
         root.after(5000, lambda: message("soit prendre les deux cartes sur le terrain, soit bruler les deux cartes"))
        
 
@@ -154,14 +154,16 @@ def Jouer():
     elif dictionnaryCards[carte2][1]>dictionnaryCards[carte1][1]:
         text = Label(mainGrid, text='Joueur 2 a gagné')
         text.grid(row=2, column=1)
-        root.after(5000, lambda: message("Joueur 2, vous avez deux choix :"))
+        root.after(2000, lambda: message("Joueur 2, vous avez deux choix :"))
         root.after(5000, lambda: message("soit prendre les deux cartes sur le terrain, soit bruler les deux cartes"))
     
     else:
         text = Label(mainGrid, text='Égalité')
         text.grid(row=2, column=1)
-        root.after(5000, lambda: message("Joueur 1 et Joueur 2, chacun pioche une nouvelle carte"))
+        root.after(2000, lambda: message("Joueur 1 et Joueur 2, chacun pioche une nouvelle carte"))
         root.after(5000, lambda: message("et vos cartes sont brulées"))
+
+    conditionCheck()
 # start up layout
 holderLabel1 = Label(mainGrid, text = '.')
 holderLabel2 = Label(mainGrid, text = '.')
@@ -271,11 +273,11 @@ def conditionCheck():
         powerCount2[dictionnaryCards[i[1]]] += 1
     
     if (familyCount1["Algorithmes & Programmation"] == 6 or familyCount1["Intelligence Artificielle"]==6 or familyCount1["Interaction Homme-Machine"] == 6 or familyCount1["Machines & Composants"]==6 or familyCount1["Mathématiques & Informatique"]==6 or familyCount1["Systèmes & réseaux"]==6 or familyCount1["Sécurité et confidentialité"]==6) and (familyCount2["Algorithmes & Programmation"] == 6 or familyCount2["Intelligence Artificielle"]==6 or familyCount2["Interaction Homme-Machine"] == 6 or familyCount2["Machines & Composants"]==6 or familyCount2["Mathématiques & Informatique"]==6 or familyCount2["Systèmes & réseaux"]==6 or familyCount2["Sécurité et confidentialité"]==6):
-        return('Egalité')
+        text.config(text='Egalité')
     elif familyCount2["Algorithmes & Programmation"] == 6 or familyCount2["Intelligence Artificielle"]==6 or familyCount2["Interaction Homme-Machine"] == 6 or familyCount2["Machines & Composants"]==6 or familyCount2["Mathématiques & Informatique"]==6 or familyCount2["Systèmes & réseaux"]==6 or familyCount2["Sécurité et confidentialité"]==6:
-        return('Le joueur 2 a gagné !')
+        text.config(text='Le joueur 2 a gagné !')
     elif familyCount1["Algorithmes & Programmation"] == 6 or familyCount1["Intelligence Artificielle"]==6 or familyCount1["Interaction Homme-Machine"] == 6 or familyCount1["Machines & Composants"]==6 or familyCount1["Mathématiques & Informatique"]==6 or familyCount1["Systèmes & réseaux"]==6 or familyCount1["Sécurité et confidentialité"]==6:
-        return('Le joueur 1 a gagné')
+        text.config(text='Le joueur 1 a gagné')
 # draw 2 cards from cemetary
 def drawCards():
     return ([cemetary[0], cemetary[1]])
