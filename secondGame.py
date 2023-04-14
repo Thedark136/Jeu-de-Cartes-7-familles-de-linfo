@@ -4,7 +4,9 @@ from PIL import Image, ImageTk
 import time
 # base of the root
 root = Tk()
-root.title('Jeu tro op')
+root.title('Nsi Project 3')
+icon = PhotoImage(file = "images/icon.png")
+root.iconphoto(False, icon)
 root.attributes('-fullscreen', True)
 root.configure(background="#2D2727")
 icon = PhotoImage(file = "images/icon.png")
@@ -13,9 +15,9 @@ root.resizable(0,0)
 mainGrid = Frame(root)
 mainGrid.configure(background="#2D2727")
 username1 = Label(mainGrid, text= "Joueur 1", font=("Helvetica", 16))
-username2 = Label(mainGrid, text= "Joueur 2", font=("Helvetica", 16))
+username2 = Label(mainGrid, text= "Joueur 2", font=("Helvetica", 16))           
 # configuring the first grid, 3 columns
-mainGrid.columnconfigure(0, weight=1)
+mainGrid.columnconfigure(0, weight=1)                   # do we need to configure how many rows? or is there  a max num of rows
 mainGrid.columnconfigure(1, weight=1)
 mainGrid.columnconfigure(2, weight=1)
 username1.grid(row=0, column=0, pady= 20)
@@ -29,15 +31,17 @@ def graveyardSize(card):
     global our_card_image
     our_card_image = ImageTk.PhotoImage(our_card_resize_image)
     return our_card_image
+
 def resize_cards(card):
 	our_card_img = Image.open(card)
 	our_card_resize_image = our_card_img.resize((110, 170))
 	global our_card_image
 	our_card_image = ImageTk.PhotoImage(our_card_resize_image)
 	return our_card_image
+
 def resizeGrid(card):
     our_card_img = Image.open(card)
-    our_card_resize_image = our_card_img.resize((90, 160))
+    our_card_resize_image = our_card_img.resize((110, 170))
     global our_card_image
     our_card_image = ImageTk.PhotoImage(our_card_resize_image)
     return our_card_image
@@ -63,8 +67,8 @@ def deckDisplay ():
     # preventing the quit button to go down
     # ----
     # globals
-    jouerButton = Button(mainGrid, text='Jouer', command=Jouer, font=("Helvetica", 18), borderwidth=0)
-    jouerButton.grid(row=0, column=1)
+    jouerButton = Button(mainGrid, text='Jouer', command=Jouer, font=("Helvetica", 18), borderwidth=1)
+    jouerButton.grid(row=3, column=1)
     global imageList1
     global imageList2
     global cardGrid1
@@ -119,22 +123,26 @@ def deckDisplay ():
             cardGrid2.grid(row=2, column=2)      
             cardCounter2 += 1
     # displaying the graveyard
-    graveyard = Button(mainGrid, text=..., background="#2D2727", borderwidth=0) # insert command
+    graveyard = Button(mainGrid, text=..., background="#2D2727", borderwidth=0) # insert command --- idk what to do, help
     graveyardImage = graveyardSize('Cartes/front.png')
     graveyard.config(image= graveyardImage )
     graveyard.grid(row=1, column=1)
+    
+    
 def button_press1(event):
     button = event.widget
     image = button.cget('image')
     text = button.cget('text')
     holderLabel1.config(image=image)
     holderLabel1.config(text=text)
+    
 def button_press2(event):
     button = event.widget
     image = button.cget('image')
     text = button.cget('text')
     holderLabel2.config(image=image)
     holderLabel2.config(text=text)
+
 def Quit():
     root.destroy()
 
@@ -182,6 +190,17 @@ def Jouer():
         text.grid(row=2, column=1)
         root.after(2000, lambda: message("Joueur 1 et Joueur 2, chacun pioche une nouvelle carte"))
         root.after(5000, lambda: message("et vos cartes sont brulées"))
+
+    conditionCheck()
+
+
+# idk why this crahes this game
+# def choiceButtons():
+#     prendreButton = Button(text, text="Prendre", command=..., width=20, font=("Helvetica", 18), borderwidth=0)
+#     brulerButton = Button(text, text="Bruler", command=..., width=20, font=("Helvetica", 18), borderwidth=0)
+#     prendreButton.grid(row=3, column=1)
+#     prendreButton.grid(row=4, column=1)
+
 # start up layout
 holderLabel1 = Label(mainGrid, text = '.')
 holderLabel2 = Label(mainGrid, text = '.')
