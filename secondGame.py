@@ -149,48 +149,51 @@ def Quit():
 def message(message):
     text['text'] = message
 # functions to switch the cards 
-def tkCard1(card1,card2, event):
+def tkCard1(card1,card2):
+    takeCard.destroy()
     firstDeck.append([card2, dictionnaryCards[card2][1]])
-    traded = event.widget
-    trade = traded.cget('text')
-    secondDeck.append([trade, dictionnaryCards[trade][1]])
+    # traded = event.widget
+    # trade = traded.cget('text')
+    # secondDeck.append([trade, dictionnaryCards[trade][1]])
     deckDisplay()
-def tkCard2(card1,card2, event):
+def tkCard2(card1,card2):
+    takeCard.destroy()
     secondDeck.append([card1, dictionnaryCards[card1][1]])
-    traded = event.widget
-    trade = traded.cget('text')
-    firstDeck.append([trade, dictionnaryCards[trade][1]])
+    # traded = event.widget
+    # trade = traded.cget('text')
+    # firstDeck.append([trade, dictionnaryCards[trade][1]])
     deckDisplay()
 def Jouer():
     carte1 = holderLabel1.cget('text')
     carte2 = holderLabel2.cget('text')
     global text
+    global takeCard
     if dictionnaryCards[carte1][1]>dictionnaryCards[carte2][1]:
         text = Label(mainGrid, text='Joueur 1 a gagné')
         text.grid(row=2, column=1)
         root.after(2000, lambda: message("Joueur 1, vous avez deux choix :"))
-        root.after(5000, lambda: message("soit prendre les deux cartes sur le terrain, soit bruler les deux cartes"))
-        takeCard = Button(mainGrid, text="Prendre les deux cartes",command=lambda: tkCard1(carte1, carte2, ))
+        root.after(5000, lambda: message("soit prendre les deux cartes sur le terrain, \n soit bruler les deux cartes"))
+        takeCard = Button(mainGrid, text="Prendre les deux cartes",command=lambda: tkCard1(carte1, carte2))
+        root.after(7000, text.destroy)
         cardGrid1.bind_class(Button, '<Button-1>', tkCard1)
-        takeCard.grid(row=2, column=1)
-
+        root.after(7000, lambda: takeCard.grid(row=2, column=1))
 
     elif dictionnaryCards[carte2][1]>dictionnaryCards[carte1][1]:
         text = Label(mainGrid, text='Joueur 2 a gagné')
         text.grid(row=2, column=1)
         root.after(2000, lambda: message("Joueur 2, vous avez deux choix :"))
-        root.after(5000, lambda: message("soit prendre les deux cartes sur le terrain, soit bruler les deux cartes"))
+        root.after(5000, lambda: message("soit prendre les deux cartes sur le terrain, \n soit bruler les deux cartes"))
+        root.after(7000, text.destroy)
         takeCard = Button(mainGrid, text="Prendre les deux cartes",command=lambda: tkCard2(carte1, carte2))
         cardGrid2.bind_class(Button, '<Button-1>', tkCard2)
-
-        takeCard.grid(row=2, column=1)
+        root.after(7000, lambda : takeCard.grid(row=2, column=1))
 
     else:
         text = Label(mainGrid, text='Égalité')
         text.grid(row=2, column=1)
-        root.after(2000, lambda: message("Joueur 1 et Joueur 2, chacun pioche une nouvelle carte"))
+        root.after(2000, lambda: message("Joueur 1 et Joueur 2, \n chacun pioche une nouvelle carte"))
         root.after(5000, lambda: message("et vos cartes sont brulées"))
-
+        root.after(7000, text.destroy)
     conditionCheck()
 
 
