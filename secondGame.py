@@ -17,7 +17,7 @@ mainGrid.configure(background="#2D2727")
 username1 = Label(mainGrid, text= "Joueur 1", font=("Helvetica", 16))
 username2 = Label(mainGrid, text= "Joueur 2", font=("Helvetica", 16))           
 # configuring the first grid, 3 columns
-mainGrid.columnconfigure(0, weight=1)                   # do we need to configure how many rows? or is there  a max num of rows
+mainGrid.columnconfigure(0, weight=1)
 mainGrid.columnconfigure(1, weight=1)
 mainGrid.columnconfigure(2, weight=1)
 username1.grid(row=0, column=0, pady= 20)
@@ -68,7 +68,7 @@ def deckDisplay ():
     # ----
     # globals
     jouerButton = Button(mainGrid, text='Jouer', command=Jouer, font=("Helvetica", 18), borderwidth=1)
-    jouerButton.grid(row=3, column=1)
+    jouerButton.grid(row=5, column=1, pady=10)
     global imageList1
     global imageList2
     global cardGrid1
@@ -167,26 +167,34 @@ def Jouer():
     carte1 = holderLabel1.cget('text')
     carte2 = holderLabel2.cget('text')
     global text
-    global takeCard
+    global prendreButton
+    global brulerButton
     if dictionnaryCards[carte1][1]>dictionnaryCards[carte2][1]:
         text = Label(mainGrid, text='Joueur 1 a gagné')
         text.grid(row=2, column=1)
         root.after(2000, lambda: message("Joueur 1, vous avez deux choix :"))
         root.after(5000, lambda: message("soit prendre les deux cartes sur le terrain, \n soit bruler les deux cartes"))
-        takeCard = Button(mainGrid, text="Prendre les deux cartes",command=lambda: tkCard1(carte1, carte2))
-        root.after(7000, text.destroy)
-        cardGrid1.bind_class(Button, '<Button-1>', tkCard1)
-        root.after(7000, lambda: takeCard.grid(row=2, column=1))
+        
+        prendreButton = Button(mainGrid, text="Prendre les deux cartes",command=lambda: tkCard1(carte1, carte2))
+        prendreButton.bind_class(Button, '<Button-1>', tkCard1)
+        brulerButton = Button(mainGrid, text="Bruler les deux cartes",command=lambda: ...)
+        brulerButton.bind_class(Button, '<Button-1>', ...)
+        root.after(7000, lambda : prendreButton.grid(row=3, column=1, pady=5))
+        root.after(7000, lambda : brulerButton.grid(row=4, column=1))
 
     elif dictionnaryCards[carte2][1]>dictionnaryCards[carte1][1]:
         text = Label(mainGrid, text='Joueur 2 a gagné')
         text.grid(row=2, column=1)
         root.after(2000, lambda: message("Joueur 2, vous avez deux choix :"))
         root.after(5000, lambda: message("soit prendre les deux cartes sur le terrain, \n soit bruler les deux cartes"))
-        root.after(7000, text.destroy)
-        takeCard = Button(mainGrid, text="Prendre les deux cartes",command=lambda: tkCard2(carte1, carte2))
-        cardGrid2.bind_class(Button, '<Button-1>', tkCard2)
-        root.after(7000, lambda : takeCard.grid(row=2, column=1))
+        
+        root.after(8000, text.destroy)
+        prendreButton = Button(mainGrid, text="Prendre les deux cartes",command=lambda: tkCard2(carte1, carte2))
+        prendreButton.bind_class(Button, '<Button-1>', tkCard2)
+        brulerButton = Button(mainGrid, text="Bruler les deux cartes",command=lambda: ...)
+        brulerButton.bind_class(Button, '<Button-1>', ...)
+        root.after(5500, lambda : prendreButton.grid(row=3, column=1, pady=5))
+        root.after(5500, lambda : brulerButton.grid(row=4, column=1))
 
     else:
         text = Label(mainGrid, text='Égalité')
