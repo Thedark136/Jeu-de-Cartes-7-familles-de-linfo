@@ -67,6 +67,8 @@ def deckDisplay ():
     jouerButton.grid(row=0, column=1)
     global imageList1
     global imageList2
+    global cardGrid1
+    global cardGrid2
     startButton.destroy()
     quitButton.grid(row= 8, column= 1)
     # cardGrid layout
@@ -138,7 +140,19 @@ def Quit():
 
 def message(message):
     text['text'] = message
-
+# functions to switch the cards 
+def tkCard1(card1,card2, event):
+    firstDeck.append([card2, dictionnaryCards[card2][1]])
+    traded = event.widget
+    trade = traded.cget('text')
+    secondDeck.append([trade, dictionnaryCards[trade][1]])
+    deckDisplay()
+def tkCard2(card1,card2, event):
+    secondDeck.append([card1, dictionnaryCards[card1][1]])
+    traded = event.widget
+    trade = traded.cget('text')
+    firstDeck.append([trade, dictionnaryCards[trade][1]])
+    deckDisplay()
 def Jouer():
     carte1 = holderLabel1.cget('text')
     carte2 = holderLabel2.cget('text')
@@ -148,7 +162,9 @@ def Jouer():
         text.grid(row=2, column=1)
         root.after(2000, lambda: message("Joueur 1, vous avez deux choix :"))
         root.after(5000, lambda: message("soit prendre les deux cartes sur le terrain, soit bruler les deux cartes"))
-       
+        takeCard = Button(mainGrid, text="Prendre les deux cartes",command=lambda: tkCard1(carte1, carte2, ))
+        cardGrid1.bind_class(Button, '<Button-1>', tkCard1)
+        takeCard.grid(row=2, column=1)
 
 
     elif dictionnaryCards[carte2][1]>dictionnaryCards[carte1][1]:
@@ -156,14 +172,16 @@ def Jouer():
         text.grid(row=2, column=1)
         root.after(2000, lambda: message("Joueur 2, vous avez deux choix :"))
         root.after(5000, lambda: message("soit prendre les deux cartes sur le terrain, soit bruler les deux cartes"))
-    
+        takeCard = Button(mainGrid, text="Prendre les deux cartes",command=lambda: tkCard2(carte1, carte2))
+        cardGrid2.bind_class(Button, '<Button-1>', tkCard2)
+
+        takeCard.grid(row=2, column=1)
+
     else:
         text = Label(mainGrid, text='Égalité')
         text.grid(row=2, column=1)
         root.after(2000, lambda: message("Joueur 1 et Joueur 2, chacun pioche une nouvelle carte"))
         root.after(5000, lambda: message("et vos cartes sont brulées"))
-
-    conditionCheck()
 # start up layout
 holderLabel1 = Label(mainGrid, text = '.')
 holderLabel2 = Label(mainGrid, text = '.')
@@ -249,7 +267,7 @@ def conditionCheck():
     }
     for i in firstDeck :
         familyCount1[dictionnaryCards[i[0]][0]] += 1
-        powerCount1[dictionnaryCards[i[1]][0]] += 1
+        powerCount1[dictionnaryCards[i[0]][1]] += 1
     # same but for the 2nd player
     familyCount2 = {
         "Sécurité et confidentialité":0,
@@ -269,8 +287,8 @@ def conditionCheck():
         6:0,
     }
     for i in secondDeck :
-        familyCount2[dictionnaryCards[i[0]]] += 1
-        powerCount2[dictionnaryCards[i[1]]] += 1
+        familyCount2[dictionnaryCards[i[0]][0]] += 1
+        powerCount2[dictionnaryCards[i[0]][1]] += 1
     
     if (familyCount1["Algorithmes & Programmation"] == 6 or familyCount1["Intelligence Artificielle"]==6 or familyCount1["Interaction Homme-Machine"] == 6 or familyCount1["Machines & Composants"]==6 or familyCount1["Mathématiques & Informatique"]==6 or familyCount1["Systèmes & réseaux"]==6 or familyCount1["Sécurité et confidentialité"]==6) and (familyCount2["Algorithmes & Programmation"] == 6 or familyCount2["Intelligence Artificielle"]==6 or familyCount2["Interaction Homme-Machine"] == 6 or familyCount2["Machines & Composants"]==6 or familyCount2["Mathématiques & Informatique"]==6 or familyCount2["Systèmes & réseaux"]==6 or familyCount2["Sécurité et confidentialité"]==6):
         text.config(text='Egalité')
