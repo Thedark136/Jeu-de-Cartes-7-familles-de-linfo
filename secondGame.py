@@ -38,7 +38,6 @@ def resize_cards(card):
 	global our_card_image
 	our_card_image = ImageTk.PhotoImage(our_card_resize_image)
 	return our_card_image
-
 def resizeGrid(card):
     our_card_img = Image.open(card)
     our_card_resize_image = our_card_img.resize((110, 170))
@@ -68,7 +67,7 @@ def deckDisplay ():
     # ----
     # globals
     jouerButton = Button(mainGrid, text='Jouer', command=Jouer, font=("Helvetica", 18), borderwidth=1)
-    jouerButton.grid(row=5, column=1, pady=10)
+    jouerButton.grid(row=0, column=1, pady=10)
     global imageList1
     global imageList2
     global cardGrid1
@@ -126,16 +125,13 @@ def deckDisplay ():
     graveyard = Button(mainGrid, text=..., background="#2D2727", borderwidth=0) # insert command --- idk what to do, help
     graveyardImage = graveyardSize('Cartes/front.png')
     graveyard.config(image= graveyardImage )
-    graveyard.grid(row=1, column=1)
-    
-    
+    graveyard.grid(row=1, column=1)      
 def button_press1(event):
     button = event.widget
     image = button.cget('image')
     text = button.cget('text')
     holderLabel1.config(image=image)
-    holderLabel1.config(text=text)
-    
+    holderLabel1.config(text=text)   
 def button_press2(event):
     button = event.widget
     image = button.cget('image')
@@ -149,19 +145,21 @@ def Quit():
 def message(message):
     text['text'] = message
 # functions to switch the cards 
-def tkCard1(card1,card2):
-    takeCard.destroy()
+def tkCard1(card1,card2, event):
     firstDeck.append([card2, dictionnaryCards[card2][1]])
-    # traded = event.widget
-    # trade = traded.cget('text')
-    # secondDeck.append([trade, dictionnaryCards[trade][1]])
+    traded = event.widget
+    trade = traded.cget('text')
+    secondDeck.append([trade, dictionnaryCards[trade][1]])
+    prendreButton.destroy()
+    brulerButton.destroy()
     deckDisplay()
-def tkCard2(card1,card2):
-    takeCard.destroy()
+def tkCard2(card1,card2, event):
     secondDeck.append([card1, dictionnaryCards[card1][1]])
-    # traded = event.widget
-    # trade = traded.cget('text')
-    # firstDeck.append([trade, dictionnaryCards[trade][1]])
+    traded = event.widget
+    trade = traded.cget('text')
+    firstDeck.append([trade, dictionnaryCards[trade][1]])
+    prendreButton.destroy()
+    brulerButton.destroy()
     deckDisplay()
 def Jouer():
     carte1 = holderLabel1.cget('text')
@@ -174,27 +172,32 @@ def Jouer():
         text.grid(row=2, column=1)
         root.after(2000, lambda: message("Joueur 1, vous avez deux choix :"))
         root.after(5000, lambda: message("soit prendre les deux cartes sur le terrain, \n soit bruler les deux cartes"))
-        
-        prendreButton = Button(mainGrid, text="Prendre les deux cartes",command=lambda: tkCard1(carte1, carte2))
-        prendreButton.bind_class(Button, '<Button-1>', tkCard1)
-        brulerButton = Button(mainGrid, text="Bruler les deux cartes",command=lambda: ...)
+        root.after(7000, text.destroy)
+        choiceGrid = Frame(mainGrid)
+        choiceGrid.columnconfigure(0, weight=0)
+        choiceGrid.grid(row=2, column=1)
+        prendreButton = Button(choiceGrid, text="Prendre les deux cartes",command=lambda: tkCard1(carte1, carte2))
+        prendreButton.bind('<Button-1>', tkCard1)
+        brulerButton = Button(choiceGrid, text="Bruler les deux cartes",command=lambda: ...)
         brulerButton.bind_class(Button, '<Button-1>', ...)
-        root.after(7000, lambda : prendreButton.grid(row=3, column=1, pady=5))
-        root.after(7000, lambda : brulerButton.grid(row=4, column=1))
+        root.after(7000, lambda : prendreButton.grid(row=0, column=0, pady=5))
+        root.after(7000, lambda : brulerButton.grid(row=1, column=0))
 
     elif dictionnaryCards[carte2][1]>dictionnaryCards[carte1][1]:
         text = Label(mainGrid, text='Joueur 2 a gagné')
         text.grid(row=2, column=1)
         root.after(2000, lambda: message("Joueur 2, vous avez deux choix :"))
         root.after(5000, lambda: message("soit prendre les deux cartes sur le terrain, \n soit bruler les deux cartes"))
-        
-        root.after(8000, text.destroy)
-        prendreButton = Button(mainGrid, text="Prendre les deux cartes",command=lambda: tkCard2(carte1, carte2))
-        prendreButton.bind_class(Button, '<Button-1>', tkCard2)
-        brulerButton = Button(mainGrid, text="Bruler les deux cartes",command=lambda: ...)
-        brulerButton.bind_class(Button, '<Button-1>', ...)
-        root.after(5500, lambda : prendreButton.grid(row=3, column=1, pady=5))
-        root.after(5500, lambda : brulerButton.grid(row=4, column=1))
+        root.after(7000, text.destroy)
+        choiceGrid = Frame(mainGrid)
+        choiceGrid.columnconfigure(0, weight=0)
+        choiceGrid.grid(row=2, column=1)
+        prendreButton = Button(choiceGrid, text="Prendre les deux cartes",command=lambda: tkCard2(carte1, carte2))
+        prendreButton.bind('<Button-1>', tkCard2)
+        brulerButton = Button(choiceGrid, text="Bruler les deux cartes",command=lambda: ...)
+        brulerButton.bind('<Button-1>', ...)
+        root.after(7000, lambda : prendreButton.grid(row=0, column=0, pady=5))
+        root.after(7000, lambda : brulerButton.grid(row=1, column=0))
 
     else:
         text = Label(mainGrid, text='Égalité')
