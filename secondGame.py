@@ -67,7 +67,7 @@ def deckDisplay ():
     # ----
     # globals
     jouerButton = Button(mainGrid, text='Jouer', command=Jouer, font=("Helvetica", 18), borderwidth=1)
-    jouerButton.grid(row=0, column=1, pady=10)
+    jouerButton.grid(row=4, column=1, pady=10)
     global imageList1
     global imageList2
     global cardGrid1
@@ -145,28 +145,39 @@ def Quit():
 def message(message):
     text['text'] = message
 # functions to switch the cards 
-def tkCard1(card1,card2, event):
-    firstDeck.append([card2, dictionnaryCards[card2][1]])
+def tkCard1(event):
+    print("tk1")
+    firstDeck.append([carte2, dictionnaryCards[carte2][1]])
     traded = event.widget
     trade = traded.cget('text')
+    print(trade)
     secondDeck.append([trade, dictionnaryCards[trade][1]])
     prendreButton.destroy()
     brulerButton.destroy()
     deckDisplay()
-def tkCard2(card1,card2, event):
-    secondDeck.append([card1, dictionnaryCards[card1][1]])
+
+
+def tkCard2(event):
+    print("tk2")
+    secondDeck.append([carte1, dictionnaryCards[carte1][1]])
     traded = event.widget
     trade = traded.cget('text')
+    print(trade)
     firstDeck.append([trade, dictionnaryCards[trade][1]])
     prendreButton.destroy()
     brulerButton.destroy()
     deckDisplay()
+
+
 def Jouer():
+    global carte1
+    global carte2
     carte1 = holderLabel1.cget('text')
     carte2 = holderLabel2.cget('text')
     global text
     global prendreButton
     global brulerButton
+    print(carte1, carte2)
     if dictionnaryCards[carte1][1]>dictionnaryCards[carte2][1]:
         text = Label(mainGrid, text='Joueur 1 a gagné')
         text.grid(row=2, column=1)
@@ -176,7 +187,7 @@ def Jouer():
         choiceGrid = Frame(mainGrid)
         choiceGrid.columnconfigure(0, weight=0)
         choiceGrid.grid(row=2, column=1)
-        prendreButton = Button(choiceGrid, text="Prendre les deux cartes",command=lambda: tkCard1(carte1, carte2))
+        prendreButton = Button(choiceGrid, text="Prendre les deux cartes",command=lambda: tkCard1)
         prendreButton.bind('<Button-1>', tkCard1)
         brulerButton = Button(choiceGrid, text="Bruler les deux cartes",command=lambda: ...)
         brulerButton.bind_class(Button, '<Button-1>', ...)
@@ -192,7 +203,7 @@ def Jouer():
         choiceGrid = Frame(mainGrid)
         choiceGrid.columnconfigure(0, weight=0)
         choiceGrid.grid(row=2, column=1)
-        prendreButton = Button(choiceGrid, text="Prendre les deux cartes",command=lambda: tkCard2(carte1, carte2))
+        prendreButton = Button(choiceGrid, text="Prendre les deux cartes",command=lambda: tkCard2)
         prendreButton.bind('<Button-1>', tkCard2)
         brulerButton = Button(choiceGrid, text="Bruler les deux cartes",command=lambda: ...)
         brulerButton.bind('<Button-1>', ...)
@@ -206,14 +217,6 @@ def Jouer():
         root.after(5000, lambda: message("et vos cartes sont brulées"))
         root.after(7000, text.destroy)
     conditionCheck()
-
-
-# idk why this crahes this game
-# def choiceButtons():
-#     prendreButton = Button(text, text="Prendre", command=..., width=20, font=("Helvetica", 18), borderwidth=0)
-#     brulerButton = Button(text, text="Bruler", command=..., width=20, font=("Helvetica", 18), borderwidth=0)
-#     prendreButton.grid(row=3, column=1)
-#     prendreButton.grid(row=4, column=1)
 
 # start up layout
 holderLabel1 = Label(mainGrid, text = '.')
@@ -329,9 +332,23 @@ def conditionCheck():
         text.config(text='Le joueur 2 a gagné !')
     elif familyCount1["Algorithmes & Programmation"] == 6 or familyCount1["Intelligence Artificielle"]==6 or familyCount1["Interaction Homme-Machine"] == 6 or familyCount1["Machines & Composants"]==6 or familyCount1["Mathématiques & Informatique"]==6 or familyCount1["Systèmes & réseaux"]==6 or familyCount1["Sécurité et confidentialité"]==6:
         text.config(text='Le joueur 1 a gagné')
+    
+    if (powerCount1[1]==1 and powerCount1[2]==1 and powerCount1[3]==1 and powerCount1[4]==1 and powerCount1[5]==1 and powerCount1[6]==1) and (powerCount2[1]==1 and powerCount2[2]==1 and powerCount2[3]==1 and powerCount2[4]==1 and powerCount2[5]==1 and powerCount2[6]==1):
+        text.config(text='Egalité')
+    elif (powerCount2[1]==1 and powerCount2[2]==1 and powerCount2[3]==1 and powerCount2[4]==1 and powerCount2[5]==1 and powerCount2[6]==1):
+        text.config(text='Le joueur 2 a gagné !')
+    elif (powerCount1[1]==1 and powerCount1[2]==1 and powerCount1[3]==1 and powerCount1[4]==1 and powerCount1[5]==1 and powerCount1[6]==1):
+        text.config(text='Le joueur 1 a gagné')
 # draw 2 cards from cemetary
 def drawCards():
     return ([cemetary[0], cemetary[1]])
+
+
+
+
+
+
+
 
 # to do -
 # function to compare the cards (+ button), inside ya 5 fonctions :
