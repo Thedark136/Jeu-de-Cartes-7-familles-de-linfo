@@ -158,8 +158,22 @@ def message(message):
     
 def JouerRemove():
     jouerButton.destroy()
+    
+def GiveOther1_2 ():
+    Gcarte1 = holderLabel1.cget('text')
+    print(Gcarte1)
+    
+    
+def GiveOther2_1 ():
+    Gcarte2 = holderLabel2.cget('text')
+    print(Gcarte12)
+
+
+
+
 # functions to switch the cards 
 def tkCard1(event):
+    choiceGrid.destroy()
     print("tk1")
     firstDeck.append([carte2, dictionnaryCards[carte2][1]])
     secondDeck.append([carte1, dictionnaryCards[carte1][1]])
@@ -169,11 +183,17 @@ def tkCard1(event):
     deckDisplay()
     JouerRemove()
     init()
-    giveButton = Button(mainGrid, text='Jouer', command=Jouer, font=("Helvetica", 18), borderwidth=1)
-    text['text'] = "lolololol"
+    text['text'] = "Vous devez choisir une carte a donner \n a l'autre joueur."
+    
+    choiceGrid = Frame(mainGrid)
+    choiceGrid.columnconfigure(0, weight=0)
+    choiceGrid.grid(row=2, column=1)
+    giveButton = Button(choiceGrid, text='Choisir', command=GiveOther1_2, font=("Helvetica", 18), borderwidth=1)
+    giveButton.grid(row=1, column=0)
 
 
 def tkCard2(event):
+    choiceGrid.destroy()
     print("tk2")
     secondDeck.append([carte1, dictionnaryCards[carte1][1]])
     firstDeck.append([carte2, dictionnaryCards[carte2][1]])
@@ -183,8 +203,14 @@ def tkCard2(event):
     deckDisplay()
     JouerRemove()
     init()
-    giveButton = Button(mainGrid, text='Jouer', command=Jouer, font=("Helvetica", 18), borderwidth=1)
-    text['text'] = "lolololol"
+    text['text'] = "Vous devez choisir une carte a donner \n a l'autre joueur."
+    
+    choiceGrid = Frame(mainGrid)
+    choiceGrid.columnconfigure(0, weight=0)
+    choiceGrid.grid(row=2, column=1)
+    giveButton = Button(choiceGrid, text='Choisir', command=GiveOther2_1, font=("Helvetica", 18), borderwidth=1)
+    giveButton.grid(row=1, column=0)
+
 
 
 def Jouer():
@@ -196,6 +222,7 @@ def Jouer():
     global text
     global prendreButton
     global brulerButton
+    global choiceGrid
     print(carte1, carte2)
     if dictionnaryCards[carte1][1]>dictionnaryCards[carte2][1]:
         text = Label(mainGrid, text='Joueur 1 a gagné', background="#2D2727", fg='white')
