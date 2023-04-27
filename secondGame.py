@@ -178,9 +178,10 @@ def tkCard1(event):
     print("tk1")
     print(firstDeck)
     print(secondDeck)
-    firstDeck.append([carte2, dictionnaryCards[carte2][1]])
-    secondDeck.remove(carte2)
-
+    print(carte1)
+    print(carte2)
+    firstDeck.append((carte2, dictionnaryCards[carte2][1]))
+    secondDeck.remove((carte2, dictionnaryCards[carte2][1]))
 
 
     prendreButton.destroy()
@@ -205,7 +206,7 @@ def tkCard2(event):
     choiceGrid.destroy()
     print("tk2")
     secondDeck.append([carte1, dictionnaryCards[carte1][1]])
-    firstDeck.remove([carte1, dictionnaryCards[carte1][1]])
+    firstDeck.append([carte1, dictionnaryCards[carte1][1]])
     secondDeck.append([carte2, dictionnaryCards[carte2][1]])
     secondDeck.remove([carte2, dictionnaryCards[carte2][1]])
     prendreButton.destroy()
