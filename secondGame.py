@@ -184,13 +184,15 @@ def tkCard1(event):
     deckDisplay()
     JouerRemove()
     init()
-    text['text'] = "Vous devez choisir une carte a donner \n a l'autre joueur."
+    nouveau_texte = "Vous devez choisir une carte a donner \n a l'autre joueur."
     
-    choiceGrid = Frame(mainGrid)
+    choiceGrid = Frame(mainGrid, background="#2D2727")
     choiceGrid.columnconfigure(0, weight=0)
     choiceGrid.grid(row=2, column=1)
     giveButton = Button(choiceGrid, text='Choisir', command=GiveOther1_2, font=("Helvetica", 18), borderwidth=1)
-    giveButton.grid(row=1, column=0)
+    giveButton.grid(row=1, column=0, pady=5)
+    texte = Label(choiceGrid, text=nouveau_texte, background="#2D2727", fg="white")
+    texte.grid(row=0, column=0)
 
 
 def tkCard2(event):
@@ -205,13 +207,15 @@ def tkCard2(event):
     deckDisplay()
     JouerRemove()
     init()
-    text['text'] = "Vous devez choisir une carte a donner \n a l'autre joueur."
+    nouveau_texte = "Vous devez choisir une carte a donner \n a l'autre joueur."
     
-    choiceGrid = Frame(mainGrid)
+    choiceGrid = Frame(mainGrid, background="#2D2727")
     choiceGrid.columnconfigure(0, weight=0)
     choiceGrid.grid(row=2, column=1)
     giveButton = Button(choiceGrid, text='Choisir', command=GiveOther2_1, font=("Helvetica", 18), borderwidth=1)
-    giveButton.grid(row=1, column=0)
+    giveButton.grid(row=1, column=0, pady=5)
+    texte = Label(choiceGrid, text=nouveau_texte, background="#2D2727", fg="white")
+    texte.grid(row=0, column=0)
 
 
 
