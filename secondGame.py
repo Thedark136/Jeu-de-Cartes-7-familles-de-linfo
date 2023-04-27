@@ -137,7 +137,7 @@ def elevenDisplay1():
     cardCounter2 = 0
     for i in range (2):
         for j in range (5) :
-            if cardCounter2 == 10 :
+            if cardCounter2 == 9 :
                 break
             imageList2[cardCounter2] = resizeGrid(f'Cartes/{secondDeck[cardCounter2][0]}.png')
             cards.append(f'Cartes/{secondDeck[cardCounter2][0]}.png')
@@ -151,7 +151,7 @@ def elevenDisplay2():
     cardCounter1 = 0
     for i in range (2):
         for j in range (5) :
-            if cardCounter1 == 10 :
+            if cardCounter1 == 9 :
                 break
             imageList1[cardCounter1] = resizeGrid(f'Cartes/{firstDeck[cardCounter1][0]}.png')
             cards.append(f'Cartes/{firstDeck[cardCounter1][0]}.png')
@@ -221,8 +221,8 @@ def tkCard1(event):
 
     prendreButton.destroy()
     brulerButton.destroy()
+    elevenDisplay1()
     JouerRemove()
-    deckDisplay()
     JouerRemove()
     init()
     nouveau_texte = "Vous devez choisir une carte a donner \n a l'autre joueur."
@@ -234,7 +234,6 @@ def tkCard1(event):
     giveButton.grid(row=1, column=0, pady=5)
     texte = Label(choiceGrid, text=nouveau_texte, background="#2D2727", fg="white")
     texte.grid(row=0, column=0)
-    elevenDisplay1()
 
 
 def tkCard2(event):
@@ -247,8 +246,8 @@ def tkCard2(event):
 
     prendreButton.destroy()
     brulerButton.destroy()
+    elevenDisplay2()
     JouerRemove()
-    deckDisplay()
     JouerRemove()
     init()
     nouveau_texte = "Vous devez choisir une carte a donner \n a l'autre joueur."
@@ -260,7 +259,6 @@ def tkCard2(event):
     giveButton.grid(row=1, column=0, pady=5)
     texte = Label(choiceGrid, text=nouveau_texte, background="#2D2727", fg="white")
     texte.grid(row=0, column=0)
-    elevenDisplay2()
 
 
 
