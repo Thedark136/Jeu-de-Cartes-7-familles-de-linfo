@@ -81,6 +81,8 @@ def deckDisplay ():
     global imageList2
     global cardGrid1
     global cardGrid2
+    global gridList1
+    global gridList2
     startButton.destroy()
     quitButton.grid(row= 8, column= 1)
     # cardGrid layout
@@ -131,6 +133,34 @@ def deckDisplay ():
             cardGrid2.grid(row=2, column=2)      
             cardCounter2 += 1
     GraveyardCreate()
+def elevenDisplay1():
+    cardCounter2 = 0
+    for i in range (2):
+        for j in range (5) :
+            if cardCounter2 == 10 :
+                break
+            imageList2[cardCounter2] = resizeGrid(f'Cartes/{secondDeck[cardCounter2][0]}.png')
+            cards.append(f'Cartes/{secondDeck[cardCounter2][0]}.png')
+            gridList2[cardCounter2] = Button(cardGrid2, text= secondDeck[cardCounter2][0], background="#2D2727", borderwidth=0)
+            gridList2[cardCounter2].bind('<Button-1>', button_press2)
+            gridList2[cardCounter2].config(image = imageList2[cardCounter2])
+            gridList2[cardCounter2].grid(row = i, column = j)
+            cardGrid2.grid(row=2, column=2)      
+            cardCounter2 += 1
+def elevenDisplay2():
+    cardCounter1 = 0
+    for i in range (2):
+        for j in range (5) :
+            if cardCounter1 == 10 :
+                break
+            imageList1[cardCounter1] = resizeGrid(f'Cartes/{firstDeck[cardCounter1][0]}.png')
+            cards.append(f'Cartes/{firstDeck[cardCounter1][0]}.png')
+            gridList1[cardCounter1] = Button(cardGrid1, text=firstDeck[cardCounter1][0], background="#2D2727", borderwidth=0)
+            gridList1[cardCounter1].bind('<Button-1>', button_press1)
+            gridList1[cardCounter1].config(image = imageList1[cardCounter1])
+            gridList1[cardCounter1].grid(row = i, column = j)
+            cardGrid1.grid(row=2, column=0)
+            cardCounter1 += 1
 def GraveyardCreate():
     # displaying the graveyard
     graveyard = Button(mainGrid, text=..., background="#2D2727", borderwidth=0) # insert command --- idk what to do, help
@@ -204,6 +234,7 @@ def tkCard1(event):
     giveButton.grid(row=1, column=0, pady=5)
     texte = Label(choiceGrid, text=nouveau_texte, background="#2D2727", fg="white")
     texte.grid(row=0, column=0)
+    elevenDisplay1()
 
 
 def tkCard2(event):
@@ -229,6 +260,7 @@ def tkCard2(event):
     giveButton.grid(row=1, column=0, pady=5)
     texte = Label(choiceGrid, text=nouveau_texte, background="#2D2727", fg="white")
     texte.grid(row=0, column=0)
+    elevenDisplay2()
 
 
 
