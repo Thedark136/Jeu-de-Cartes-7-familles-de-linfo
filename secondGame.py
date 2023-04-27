@@ -173,6 +173,7 @@ def GiveOther2_1 ():
 
 # functions to switch the cards 
 def tkCard1(event):
+    global choiceGrid
     choiceGrid.destroy()
     print("tk1")
     firstDeck.append([carte2, dictionnaryCards[carte2][1]])
@@ -193,6 +194,7 @@ def tkCard1(event):
 
 
 def tkCard2(event):
+    global choiceGrid
     choiceGrid.destroy()
     print("tk2")
     secondDeck.append([carte1, dictionnaryCards[carte1][1]])
