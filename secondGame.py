@@ -161,24 +161,15 @@ def message(message):
     
 def JouerRemove():
     jouerButton.destroy()
-
-def createcard(carte):
-    for cards in dictionnaryCards:
-        if carte == cards:
-            return (carte, cards[1])
-
+    
 def GiveOther1_2 ():
     Gcarte1 = holderLabel1.cget('text')
-    carte = createcard(Gcarte1)
-    secondDeck.append(carte)
-    firstDeck.remove(carte)
+    print(Gcarte1)
     
     
 def GiveOther2_1 ():
     Gcarte2 = holderLabel2.cget('text')
-    carte = createcard(Gcarte2)
-    firstDeck.append(carte)
-    secondDeck.remove(carte)
+    print(Gcarte2)
 
 
 
