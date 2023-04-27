@@ -133,7 +133,6 @@ def deckDisplay ():
             cardGrid2.grid(row=2, column=2)      
             cardCounter2 += 1
     GraveyardCreate()
-
 def GraveyardCreate():
     # displaying the graveyard
     graveyard = Button(mainGrid, text=..., background="#2D2727", borderwidth=0) # insert command --- idk what to do, help
@@ -185,8 +184,8 @@ def tkCard1(event):
 
     prendreButton.destroy()
     brulerButton.destroy()
+    elevenDisplay1()
     JouerRemove()
-    deckDisplay()
     JouerRemove()
     init()
     nouveau_texte = "Vous devez choisir une carte a donner \n a l'autre joueur."
@@ -200,7 +199,6 @@ def tkCard1(event):
     texte.grid(row=0, column=0)
 
 
-
 def tkCard2(event):
     global choiceGrid
     choiceGrid.destroy()
@@ -211,8 +209,8 @@ def tkCard2(event):
 
     prendreButton.destroy()
     brulerButton.destroy()
+    elevenDisplay2()
     JouerRemove()
-    deckDisplay()
     JouerRemove()
     init()
     nouveau_texte = "Vous devez choisir une carte a donner \n a l'autre joueur."
@@ -224,7 +222,6 @@ def tkCard2(event):
     giveButton.grid(row=1, column=0, pady=5)
     texte = Label(choiceGrid, text=nouveau_texte, background="#2D2727", fg="white")
     texte.grid(row=0, column=0)
-
 
 
 
