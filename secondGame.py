@@ -166,7 +166,7 @@ def GiveOther1_2 ():
     
 def GiveOther2_1 ():
     Gcarte2 = holderLabel2.cget('text')
-    print(Gcarte12)
+    print(Gcarte2)
 
 
 
@@ -177,7 +177,7 @@ def tkCard1(event):
     choiceGrid.destroy()
     print("tk1")
     firstDeck.append([carte2, dictionnaryCards[carte2][1]])
-    secondDeck.append([carte1, dictionnaryCards[carte1][1]])
+    firstDeck.append([carte1, dictionnaryCards[carte1][1]])
     prendreButton.destroy()
     brulerButton.destroy()
     JouerRemove()
@@ -200,7 +200,7 @@ def tkCard2(event):
     choiceGrid.destroy()
     print("tk2")
     secondDeck.append([carte1, dictionnaryCards[carte1][1]])
-    firstDeck.append([carte2, dictionnaryCards[carte2][1]])
+    secondDeck.append([carte2, dictionnaryCards[carte2][1]])
     prendreButton.destroy()
     brulerButton.destroy()
     JouerRemove()
