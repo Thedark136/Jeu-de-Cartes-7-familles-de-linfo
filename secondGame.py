@@ -161,15 +161,39 @@ def message(message):
 def JouerRemove():
     jouerButton.destroy()
     
+def createcard(carte):
+    for cards in dictionnaryCards:
+        if carte == cards:
+            return (carte, dictionnaryCards[cards][1])
+
 def GiveOther1_2 ():
     Gcarte1 = holderLabel1.cget('text')
-    print(Gcarte1)
+    carte = createcard(Gcarte1)
+    print(firstDeck)
+    print(secondDeck)
+    print(carte)
+    secondDeck.append(carte)
+    firstDeck.remove(carte)
+    deckDisplay()
+    global giveButton
+    global texte
+    giveButton.destroy()
+    texte.destroy()
     
     
 def GiveOther2_1 ():
     Gcarte2 = holderLabel2.cget('text')
-    print(Gcarte2)
-
+    carte = createcard(Gcarte2)
+    print(firstDeck)
+    print(secondDeck)
+    print(carte)
+    firstDeck.append(carte)
+    secondDeck.remove(carte)
+    deckDisplay()
+    global giveButton
+    global texte
+    giveButton.destroy()
+    texte.destroy()
 
 
 
@@ -184,12 +208,14 @@ def tkCard1(event):
 
     prendreButton.destroy()
     brulerButton.destroy()
-    elevenDisplay1()
     JouerRemove()
+
     JouerRemove()
     init()
     nouveau_texte = "Vous devez choisir une carte a donner \n a l'autre joueur."
-    
+
+    global giveButton
+    global texte
     choiceGrid = Frame(mainGrid, background="#2D2727")
     choiceGrid.columnconfigure(0, weight=0)
     choiceGrid.grid(row=2, column=1)
@@ -209,8 +235,8 @@ def tkCard2(event):
 
     prendreButton.destroy()
     brulerButton.destroy()
-    elevenDisplay2()
     JouerRemove()
+
     JouerRemove()
     init()
     nouveau_texte = "Vous devez choisir une carte a donner \n a l'autre joueur."
