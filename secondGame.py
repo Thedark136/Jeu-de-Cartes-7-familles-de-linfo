@@ -226,6 +226,7 @@ def tkCard1(event):
 
 
 def tkCard2(event):
+
     global choiceGrid
     choiceGrid.destroy()
     print("tk2")
@@ -250,6 +251,38 @@ def tkCard2(event):
     texte.grid(row=0, column=0)
 
 
+def bruler_1(event):
+    global choiceGrid
+    choiceGrid.destroy()
+    print("bruler1")
+
+    cemetary.append((carte1, dictionnaryCards[carte1][1]))
+    cemetary.append((carte2, dictionnaryCards[carte2][1]))
+    firstDeck.remove((carte1, dictionnaryCards[carte1][1]))
+    secondDeck.remove((carte2, dictionnaryCards[carte2][1]))  
+    new_carte_1 = cemetary[0]
+    new_carte_2 = cemetary[1]
+
+    cemetary.remove(new_carte_1)
+    cemetary.remove(new_carte_2)
+
+
+    firstDeck.append(new_carte_1)
+    firstDeck.append(new_carte_2)
+    nouveau_texte = "Vous devez choisir une carte a donner \n a l'autre joueur."
+
+    global giveButton
+    global texte
+    choiceGrid = Frame(mainGrid, background="#2D2727")
+    choiceGrid.columnconfigure(0, weight=0)
+    choiceGrid.grid(row=2, column=1)
+    giveButton = Button(choiceGrid, text='Choisir', command=GiveOther1_2, font=("Helvetica", 18), borderwidth=1)
+    giveButton.grid(row=1, column=0, pady=5)
+    texte = Label(choiceGrid, text=nouveau_texte, background="#2D2727", fg="white")
+    texte.grid(row=0, column=0)
+
+    print(new_carte_1, new_carte_2)
+
 
 def Jouer():
     JouerRemove()
@@ -272,8 +305,8 @@ def Jouer():
         choiceGrid.grid(row=2, column=1)
         prendreButton = Button(choiceGrid, text="Prendre les deux cartes",command=lambda: tkCard1)
         prendreButton.bind('<Button-1>', tkCard1)
-        brulerButton = Button(choiceGrid, text="Bruler les deux cartes",command=lambda: ...)
-        brulerButton.bind_class(Button, '<Button-1>', ...)
+        brulerButton = Button(choiceGrid, text="Bruler les deux cartes",command=lambda: bruler_1)
+        brulerButton.bind('<Button-1>', bruler_1)
         root.after(7000, lambda: message(" "))
         root.after(7000, lambda : prendreButton.grid(row=0, column=0, pady=5))
         root.after(7000, lambda : brulerButton.grid(row=1, column=0))
@@ -288,7 +321,7 @@ def Jouer():
         choiceGrid.grid(row=2, column=1)
         prendreButton = Button(choiceGrid, text="Prendre les deux cartes",command=lambda: tkCard2)
         prendreButton.bind('<Button-1>', tkCard2)
-        brulerButton = Button(choiceGrid, text="Bruler les deux cartes",command=lambda: ...)
+        brulerButton = Button(choiceGrid, text="Bruler les deux cartes",command=lambda: bruler_1)
         brulerButton.bind('<Button-1>', ...)
         root.after(7000, lambda: message(" "))
         root.after(7000, lambda : prendreButton.grid(row=0, column=0, pady=5))
@@ -417,7 +450,7 @@ def conditionCheck():
     elif familyCount1["Algorithmes & Programmation"] == 6 or familyCount1["Intelligence Artificielle"]==6 or familyCount1["Interaction Homme-Machine"] == 6 or familyCount1["Machines & Composants"]==6 or familyCount1["Mathématiques & Informatique"]==6 or familyCount1["Systèmes & réseaux"]==6 or familyCount1["Sécurité et confidentialité"]==6:
         text.config(text='Le joueur 1 a gagné')
     
-    if (powerCount1[1]==1 and powerCount1[2]==1 and powerCount1[3]==1 and powerCount1[4]==1 and powerCount1[5]==1 and powerCount1[6]==1) and (powerCount2[1]==1 and powerCount2[2]==1 and powerCount2[3]==1 and powerCount2[4]==1 and powerCount2[5]==1 and powerCount2[6]==1):
+    elif (powerCount1[1]==1 and powerCount1[2]==1 and powerCount1[3]==1 and powerCount1[4]==1 and powerCount1[5]==1 and powerCount1[6]==1) and (powerCount2[1]==1 and powerCount2[2]==1 and powerCount2[3]==1 and powerCount2[4]==1 and powerCount2[5]==1 and powerCount2[6]==1):
         text.config(text='Egalité')
     elif (powerCount2[1]==1 and powerCount2[2]==1 and powerCount2[3]==1 and powerCount2[4]==1 and powerCount2[5]==1 and powerCount2[6]==1):
         text.config(text='Le joueur 2 a gagné !')
@@ -426,14 +459,6 @@ def conditionCheck():
 # draw 2 cards from cemetary
 def drawCards():
     return ([cemetary[0], cemetary[1]])
-
-
-
-
-
-
-
-
 # to do -
 # function to compare the cards (+ button), inside ya 5 fonctions :
 # 1 - fonction qui montre les choix du gagnats sous formes de 2 bouttons
