@@ -489,17 +489,23 @@ def conditionCheck():
     
     if (familyCount1["Algorithmes & Programmation"] == 6 or familyCount1["Intelligence Artificielle"]==6 or familyCount1["Interaction Homme-Machine"] == 6 or familyCount1["Machines & Composants"]==6 or familyCount1["Mathématiques & Informatique"]==6 or familyCount1["Systèmes & réseaux"]==6 or familyCount1["Sécurité et confidentialité"]==6) and (familyCount2["Algorithmes & Programmation"] == 6 or familyCount2["Intelligence Artificielle"]==6 or familyCount2["Interaction Homme-Machine"] == 6 or familyCount2["Machines & Composants"]==6 or familyCount2["Mathématiques & Informatique"]==6 or familyCount2["Systèmes & réseaux"]==6 or familyCount2["Sécurité et confidentialité"]==6):
         text.config(text='Egalité')
+        print("egalite")
     elif familyCount2["Algorithmes & Programmation"] == 6 or familyCount2["Intelligence Artificielle"]==6 or familyCount2["Interaction Homme-Machine"] == 6 or familyCount2["Machines & Composants"]==6 or familyCount2["Mathématiques & Informatique"]==6 or familyCount2["Systèmes & réseaux"]==6 or familyCount2["Sécurité et confidentialité"]==6:
         text.config(text='Le joueur 2 a gagné !')
+        print("Le joueur 2 a gagne")
     elif familyCount1["Algorithmes & Programmation"] == 6 or familyCount1["Intelligence Artificielle"]==6 or familyCount1["Interaction Homme-Machine"] == 6 or familyCount1["Machines & Composants"]==6 or familyCount1["Mathématiques & Informatique"]==6 or familyCount1["Systèmes & réseaux"]==6 or familyCount1["Sécurité et confidentialité"]==6:
         text.config(text='Le joueur 1 a gagné')
+        print("Le joueur 1 a gaggne")
     
     elif (powerCount1[1]==1 and powerCount1[2]==1 and powerCount1[3]==1 and powerCount1[4]==1 and powerCount1[5]==1 and powerCount1[6]==1) and (powerCount2[1]==1 and powerCount2[2]==1 and powerCount2[3]==1 and powerCount2[4]==1 and powerCount2[5]==1 and powerCount2[6]==1):
         text.config(text='Egalité')
+        print("Egalite")
     elif (powerCount2[1]==1 and powerCount2[2]==1 and powerCount2[3]==1 and powerCount2[4]==1 and powerCount2[5]==1 and powerCount2[6]==1):
         text.config(text='Le joueur 2 a gagné !')
+        print("Le joueur 2 a gagne")
     elif (powerCount1[1]==1 and powerCount1[2]==1 and powerCount1[3]==1 and powerCount1[4]==1 and powerCount1[5]==1 and powerCount1[6]==1):
         text.config(text='Le joueur 1 a gagné')
+        print("Le joueur 1 a gagne ")
 
 # to do -
 # function to compare the cards (+ button), inside ya 5 fonctions :
