@@ -445,6 +445,8 @@ dictionnaryCards = {
     "Anne-Marie Kermarrec" : ["Systèmes & réseaux", 6],
 }
 def conditionCheck():
+    winCount1 = 0
+    winCount2 = 0
     familyCount1 = {
         "Sécurité et confidentialité":0,
         "Algorithmes & Programmation":0,
@@ -487,19 +489,20 @@ def conditionCheck():
         familyCount2[dictionnaryCards[i[0]][0]] += 1
         powerCount2[dictionnaryCards[i[0]][1]] += 1
     
-    if (familyCount1["Algorithmes & Programmation"] == 6 or familyCount1["Intelligence Artificielle"]==6 or familyCount1["Interaction Homme-Machine"] == 6 or familyCount1["Machines & Composants"]==6 or familyCount1["Mathématiques & Informatique"]==6 or familyCount1["Systèmes & réseaux"]==6 or familyCount1["Sécurité et confidentialité"]==6) and (familyCount2["Algorithmes & Programmation"] == 6 or familyCount2["Intelligence Artificielle"]==6 or familyCount2["Interaction Homme-Machine"] == 6 or familyCount2["Machines & Composants"]==6 or familyCount2["Mathématiques & Informatique"]==6 or familyCount2["Systèmes & réseaux"]==6 or familyCount2["Sécurité et confidentialité"]==6):
-        text.config(text='Egalité')
-    elif familyCount2["Algorithmes & Programmation"] == 6 or familyCount2["Intelligence Artificielle"]==6 or familyCount2["Interaction Homme-Machine"] == 6 or familyCount2["Machines & Composants"]==6 or familyCount2["Mathématiques & Informatique"]==6 or familyCount2["Systèmes & réseaux"]==6 or familyCount2["Sécurité et confidentialité"]==6:
-        text.config(text='Le joueur 2 a gagné !')
-    elif familyCount1["Algorithmes & Programmation"] == 6 or familyCount1["Intelligence Artificielle"]==6 or familyCount1["Interaction Homme-Machine"] == 6 or familyCount1["Machines & Composants"]==6 or familyCount1["Mathématiques & Informatique"]==6 or familyCount1["Systèmes & réseaux"]==6 or familyCount1["Sécurité et confidentialité"]==6:
-        text.config(text='Le joueur 1 a gagné')
-    
-    elif (powerCount1[1]==1 and powerCount1[2]==1 and powerCount1[3]==1 and powerCount1[4]==1 and powerCount1[5]==1 and powerCount1[6]==1) and (powerCount2[1]==1 and powerCount2[2]==1 and powerCount2[3]==1 and powerCount2[4]==1 and powerCount2[5]==1 and powerCount2[6]==1):
-        text.config(text='Egalité')
-    elif (powerCount2[1]==1 and powerCount2[2]==1 and powerCount2[3]==1 and powerCount2[4]==1 and powerCount2[5]==1 and powerCount2[6]==1):
-        text.config(text='Le joueur 2 a gagné !')
-    elif (powerCount1[1]==1 and powerCount1[2]==1 and powerCount1[3]==1 and powerCount1[4]==1 and powerCount1[5]==1 and powerCount1[6]==1):
-        text.config(text='Le joueur 1 a gagné')
+    for elt in familyCount1 :
+        if familyCount1[elt] == 6 :
+            text.config(text="Joueur 1 a gagne la partie")
+            text.grid(row=2, column=1)
+        elif familyCount2[elt] == 6 :
+            text.config(text="Joueur 2 a gagne la partie")
+            text.grid(row=2, column=1)
+    for elt in powerCount1 :
+        if powerCount1[elt] == 6 :
+            text.config(text="Joueur 1 a gagne la partie")
+            text.grid(row=2, column=1)
+        if powerCount2[elt] == 6 :
+            text.config(text="Joueur 2 a gagne la partie")
+            text.grid(row=2, column=1)
 # draw 2 cards from cemetary
 def drawCards():
     return ([cemetary[0], cemetary[1]])
