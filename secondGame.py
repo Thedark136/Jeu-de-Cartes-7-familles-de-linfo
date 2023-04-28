@@ -283,6 +283,38 @@ def bruler_1(event):
 
     print(new_carte_1, new_carte_2)
 
+def bruler_2(event):
+    global choiceGrid
+    choiceGrid.destroy()
+    print("bruler2")
+
+    cemetary.append((carte1, dictionnaryCards[carte1][1]))
+    cemetary.append((carte2, dictionnaryCards[carte2][1]))
+    firstDeck.remove((carte1, dictionnaryCards[carte1][1]))
+    secondDeck.remove((carte2, dictionnaryCards[carte2][1]))  
+    new_carte_1 = cemetary[0]
+    new_carte_2 = cemetary[1]
+
+    cemetary.remove(new_carte_1)
+    cemetary.remove(new_carte_2)
+
+
+    secondDeck.append(new_carte_1)
+    secondDeck.append(new_carte_2)
+    nouveau_texte = "Vous devez choisir une carte a donner \n a l'autre joueur."
+
+    global giveButton
+    global texte
+    choiceGrid = Frame(mainGrid, background="#2D2727")
+    choiceGrid.columnconfigure(0, weight=0)
+    choiceGrid.grid(row=2, column=1)
+    giveButton = Button(choiceGrid, text='Choisir', command=GiveOther1_2, font=("Helvetica", 18), borderwidth=1)
+    giveButton.grid(row=1, column=0, pady=5)
+    texte = Label(choiceGrid, text=nouveau_texte, background="#2D2727", fg="white")
+    texte.grid(row=0, column=0)
+
+    print(new_carte_1, new_carte_2)
+
 
 def Jouer():
     JouerRemove()
@@ -321,8 +353,8 @@ def Jouer():
         choiceGrid.grid(row=2, column=1)
         prendreButton = Button(choiceGrid, text="Prendre les deux cartes",command=lambda: tkCard2)
         prendreButton.bind('<Button-1>', tkCard2)
-        brulerButton = Button(choiceGrid, text="Bruler les deux cartes",command=lambda: bruler_1)
-        brulerButton.bind('<Button-1>', ...)
+        brulerButton = Button(choiceGrid, text="Bruler les deux cartes",command=lambda: bruler_2)
+        brulerButton.bind('<Button-1>', bruler_2)
         root.after(7000, lambda: message(" "))
         root.after(7000, lambda : prendreButton.grid(row=0, column=0, pady=5))
         root.after(7000, lambda : brulerButton.grid(row=1, column=0))
