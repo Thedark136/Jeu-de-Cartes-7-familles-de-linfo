@@ -87,7 +87,6 @@ def deckDisplay ():
     quitButton.grid(row= 8, column= 1)
     # cardGrid layout
     
-    print(firstDeck, secondDeck)
     
     cardGrid1 = Frame(mainGrid)
     cardGrid1.configure(pady=50, background="#2D2727")
@@ -169,9 +168,6 @@ def createcard(carte):
 def GiveOther1_2 ():
     Gcarte1 = holderLabel1.cget('text')
     carte = createcard(Gcarte1)
-    print(firstDeck)
-    print(secondDeck)
-    print(carte)
     secondDeck.append(carte)
     firstDeck.remove(carte)
     deckDisplay()
@@ -184,9 +180,6 @@ def GiveOther1_2 ():
 def GiveOther2_1 ():
     Gcarte2 = holderLabel2.cget('text')
     carte = createcard(Gcarte2)
-    print(firstDeck)
-    print(secondDeck)
-    print(carte)
     firstDeck.append(carte)
     secondDeck.remove(carte)
     deckDisplay()
@@ -283,7 +276,6 @@ def bruler_1(event):
     texte = Label(choiceGrid, text=nouveau_texte, background="#2D2727", fg="white")
     texte.grid(row=0, column=0)
 
-    print(new_carte_1, new_carte_2)
 
 def bruler_2(event):
     global choiceGrid
@@ -315,8 +307,24 @@ def bruler_2(event):
     texte = Label(choiceGrid, text=nouveau_texte, background="#2D2727", fg="white")
     texte.grid(row=0, column=0)
 
-    print(new_carte_1, new_carte_2)
 
+
+def egalite():
+    print("egalite")
+    cemetary.append((carte1, dictionnaryCards[carte1][1]))
+    cemetary.append((carte2, dictionnaryCards[carte2][1]))
+    firstDeck.remove((carte1, dictionnaryCards[carte1][1]))
+    secondDeck.remove((carte2, dictionnaryCards[carte2][1]))
+
+    new_carte_1 = cemetary[0]
+    new_carte_2 = cemetary[1]
+    cemetary.remove(new_carte_1)
+    cemetary.remove(new_carte_2)
+
+    firstDeck.append(new_carte_1)
+    secondDeck.append(new_carte_2)
+
+    deckDisplay()
 
 def Jouer():
     JouerRemove()
@@ -328,7 +336,7 @@ def Jouer():
     global prendreButton
     global brulerButton
     global choiceGrid
-    print(carte1, carte2)
+
     if dictionnaryCards[carte1][1]>dictionnaryCards[carte2][1]:
         text = Label(mainGrid, text='Joueur 1 a gagné', background="#2D2727", fg='white')
         text.grid(row=2, column=1)
@@ -364,9 +372,11 @@ def Jouer():
     else:
         text = Label(mainGrid, text='Égalité', background="#2D2727", fg='white')
         text.grid(row=2, column=1)
-        root.after(2000, lambda: message("Joueur 1 et Joueur 2, \n chacun pioche une nouvelle carte"))
-        root.after(5000, lambda: message("et vos cartes sont brulées"))
-        root.after(7000, text.destroy)
+        root.after(2000, lambda: message("Joueur 1 et Joueur 2, \n chacun obtient une nouvelle carte de la pioche"))
+        root.after(5000, lambda: message("et vos anciennes cartes sont brulées"))
+        root.after(6000, text.destroy)
+        egalite()
+        
     conditionCheck()
 
 # start up layout
