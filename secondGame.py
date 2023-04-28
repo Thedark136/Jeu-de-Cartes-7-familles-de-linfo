@@ -84,7 +84,7 @@ def deckDisplay ():
     global gridList1
     global gridList2
     startButton.destroy()
-    quitButton.grid(row= 8, column= 1)
+    quitButton.grid(row= 0, column= 1)
     # cardGrid layout
     
     
@@ -388,7 +388,7 @@ holderLabel2.grid(row= 1, column= 2)
 startButton = Button(mainGrid, text="Commencer", command=Commencer, width=30, font=("Helvetica", 18), borderwidth=0)
 startButton.grid(row= 1, column= 1)
 quitButton = Button(mainGrid, text="Sortir", command=Quit, width=20, font=("Helvetica", 18), borderwidth=0)
-quitButton.grid(row= 2, column= 1)
+quitButton.grid(row= 0, column= 1)
 listCards = [
     ("Jules César",1),("AL-Kindi",2),("Diffie Hellman",3),("Rivest-Shamir-Adleman (RSA)",4),
     ("Shafi Goldwasser",5),("Cynthia Dwork",6),("Al-Khwarizmi",1), ("Ada Lovelace",2), ("Grace Hopper",3),
@@ -445,8 +445,6 @@ dictionnaryCards = {
     "Anne-Marie Kermarrec" : ["Systèmes & réseaux", 6],
 }
 def conditionCheck():
-    winCount1 = 0
-    winCount2 = 0
     familyCount1 = {
         "Sécurité et confidentialité":0,
         "Algorithmes & Programmation":0,
