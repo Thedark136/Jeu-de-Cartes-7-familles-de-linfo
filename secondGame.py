@@ -305,7 +305,7 @@ def bruler_2(event):
     choiceGrid = Frame(mainGrid, background="#2D2727")
     choiceGrid.columnconfigure(0, weight=0)
     choiceGrid.grid(row=2, column=1)
-    giveButton = Button(choiceGrid, text='Choisir', command=GiveOther1_2, font=("Helvetica", 18), borderwidth=1)
+    giveButton = Button(choiceGrid, text='Choisir', command=GiveOther2_1, font=("Helvetica", 18), borderwidth=1)
     giveButton.grid(row=1, column=0, pady=5)
     texte = Label(choiceGrid, text=nouveau_texte, background="#2D2727", fg="white")
     texte.grid(row=0, column=0)
@@ -449,6 +449,16 @@ dictionnaryCards = {
     "Pascale Vicat-Blanc" : ["Systèmes & réseaux", 5],
     "Anne-Marie Kermarrec" : ["Systèmes & réseaux", 6],
 }
+def restart ():
+    startButton.destroy()
+    distributeDeck()
+    deckDisplay()
+    holderLabel1 = Label(mainGrid, text = '.')
+    holderLabel2 = Label(mainGrid, text = '.')
+    holderLabel1.grid(row= 1, column= 0)
+    holderLabel2.grid(row= 1, column= 2)
+
+
 def conditionCheck():
 
     familyCount1 = {
@@ -497,24 +507,29 @@ def conditionCheck():
         if familyCount1[elt] == 6 :
             text = Label(mainGrid, text='Joueur 1 a gagné la partie', background="#2D2727", fg='white')
             text.grid(row=2, column=1)
-            startButton = Button(mainGrid, text="Recommencer", command=Commencer, width=30, font=("Helvetica", 18), borderwidth=0)
-            startButton.grid(row= 1, column= 1)
+            startButton = Button(mainGrid, text="Recommencer", command=restart, width=30, font=("Helvetica", 18), borderwidth=0)
+            startButton.grid(row= 3, column= 1)
+            jouerButton.destroy()
+
         elif familyCount2[elt] == 6 :
             text = Label(mainGrid, text='Joueur 2 a gagné la partie', background="#2D2727", fg='white')
             text.grid(row=2, column=1)
-            startButton = Button(mainGrid, text="Recommencer", command=Commencer, width=30, font=("Helvetica", 18), borderwidth=0)
-            startButton.grid(row= 1, column= 1)
+            startButton = Button(mainGrid, text="Recommencer", command=restart, width=30, font=("Helvetica", 18), borderwidth=0)
+            startButton.grid(row= 3, column= 1)
+            jouerButton.destroy()
     for elt in powerCount1 :
         if powerCount1[elt] == 6 :
             text = Label(mainGrid, text='Joueur 1 a gagné la partie', background="#2D2727", fg='white')
             text.grid(row=2, column=1)
-            startButton = Button(mainGrid, text="Recommencer", command=Commencer, width=30, font=("Helvetica", 18), borderwidth=0)
-            startButton.grid(row= 1, column= 1)
+            startButton = Button(mainGrid, text="Recommencer", command=restart, width=30, font=("Helvetica", 18), borderwidth=0)
+            startButton.grid(row= 3, column= 1)
+            jouerButton.destroy()
         if powerCount2[elt] == 6 :
             text = Label(mainGrid, text='Joueur 2 a gagné la partie', background="#2D2727", fg='white')
             text.grid(row=2, column=1)
-            startButton = Button(mainGrid, text="Recommencer", command=Commencer, width=30, font=("Helvetica", 18), borderwidth=0)
-            startButton.grid(row= 1, column= 1)
+            startButton = Button(mainGrid, text="Recommencer", command=restart, width=30, font=("Helvetica", 18), borderwidth=0)
+            startButton.grid(row= 3, column= 1)
+            jouerButton.destroy()
 # draw 2 cards from cemetary
 def drawCards():
     return ([cemetary[0], cemetary[1]])
