@@ -495,23 +495,23 @@ def conditionCheck():
     
     for elt in familyCount1 :
         if familyCount1[elt] == 6 :
-            text.config(text="Joueur 1 a gagne la partie")
+            text = Label(mainGrid, text='Joueur 1 a gagné la partie', background="#2D2727", fg='white')
             text.grid(row=2, column=1)
             startButton = Button(mainGrid, text="Recommencer", command=Commencer, width=30, font=("Helvetica", 18), borderwidth=0)
             startButton.grid(row= 1, column= 1)
         elif familyCount2[elt] == 6 :
-            text.config(text="Joueur 2 a gagne la partie")
+            text = Label(mainGrid, text='Joueur 2 a gagné la partie', background="#2D2727", fg='white')
             text.grid(row=2, column=1)
             startButton = Button(mainGrid, text="Recommencer", command=Commencer, width=30, font=("Helvetica", 18), borderwidth=0)
             startButton.grid(row= 1, column= 1)
     for elt in powerCount1 :
         if powerCount1[elt] == 6 :
-            text.config(text="Joueur 1 a gagne la partie")
+            text = Label(mainGrid, text='Joueur 1 a gagné la partie', background="#2D2727", fg='white')
             text.grid(row=2, column=1)
             startButton = Button(mainGrid, text="Recommencer", command=Commencer, width=30, font=("Helvetica", 18), borderwidth=0)
             startButton.grid(row= 1, column= 1)
         if powerCount2[elt] == 6 :
-            text.config(text="Joueur 2 a gagne la partie")
+            text = Label(mainGrid, text='Joueur 2 a gagné la partie', background="#2D2727", fg='white')
             text.grid(row=2, column=1)
             startButton = Button(mainGrid, text="Recommencer", command=Commencer, width=30, font=("Helvetica", 18), borderwidth=0)
             startButton.grid(row= 1, column= 1)
