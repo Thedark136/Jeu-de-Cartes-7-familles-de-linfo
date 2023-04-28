@@ -500,9 +500,7 @@ def conditionCheck():
         text.config(text='Le joueur 2 a gagné !')
     elif (powerCount1[1]==1 and powerCount1[2]==1 and powerCount1[3]==1 and powerCount1[4]==1 and powerCount1[5]==1 and powerCount1[6]==1):
         text.config(text='Le joueur 1 a gagné')
-# draw 2 cards from cemetary
-def drawCards():
-    return ([cemetary[0], cemetary[1]])
+
 # to do -
 # function to compare the cards (+ button), inside ya 5 fonctions :
 # 1 - fonction qui montre les choix du gagnats sous formes de 2 bouttons
