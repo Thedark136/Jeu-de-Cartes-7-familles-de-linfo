@@ -1,10 +1,10 @@
 from tkinter import *
 from random import *
 from PIL import Image, ImageTk
-import time
+
 # base of the root
 root = Tk()
-root.title('Nsi Project 3')
+root.title('Le collectionneur de cerveaux informatiques, le jeu des cartes des sciences numériques')
 icon = PhotoImage(file = "images/icon.png")
 root.iconphoto(False, icon)
 root.attributes('-fullscreen', True)
