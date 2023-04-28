@@ -175,6 +175,7 @@ def GiveOther1_2 ():
     global texte
     giveButton.destroy()
     texte.destroy()
+    conditionCheck()
     
     
 def GiveOther2_1 ():
@@ -187,6 +188,7 @@ def GiveOther2_1 ():
     global texte
     giveButton.destroy()
     texte.destroy()
+    conditionCheck()
 
 
 
@@ -275,6 +277,7 @@ def bruler_1(event):
     giveButton.grid(row=1, column=0, pady=5)
     texte = Label(choiceGrid, text=nouveau_texte, background="#2D2727", fg="white")
     texte.grid(row=0, column=0)
+    conditionCheck()
 
 
 def bruler_2(event):
@@ -306,6 +309,7 @@ def bruler_2(event):
     giveButton.grid(row=1, column=0, pady=5)
     texte = Label(choiceGrid, text=nouveau_texte, background="#2D2727", fg="white")
     texte.grid(row=0, column=0)
+    conditionCheck()
 
 
 
@@ -325,6 +329,7 @@ def egalite():
     secondDeck.append(new_carte_2)
 
     deckDisplay()
+    conditionCheck()
 
 def Jouer():
     JouerRemove()
@@ -445,6 +450,7 @@ dictionnaryCards = {
     "Anne-Marie Kermarrec" : ["Systèmes & réseaux", 6],
 }
 def conditionCheck():
+
     familyCount1 = {
         "Sécurité et confidentialité":0,
         "Algorithmes & Programmation":0,
@@ -491,26 +497,26 @@ def conditionCheck():
         if familyCount1[elt] == 6 :
             text.config(text="Joueur 1 a gagne la partie")
             text.grid(row=2, column=1)
+            startButton = Button(mainGrid, text="Recommencer", command=Commencer, width=30, font=("Helvetica", 18), borderwidth=0)
+            startButton.grid(row= 1, column= 1)
         elif familyCount2[elt] == 6 :
             text.config(text="Joueur 2 a gagne la partie")
             text.grid(row=2, column=1)
+            startButton = Button(mainGrid, text="Recommencer", command=Commencer, width=30, font=("Helvetica", 18), borderwidth=0)
+            startButton.grid(row= 1, column= 1)
     for elt in powerCount1 :
         if powerCount1[elt] == 6 :
             text.config(text="Joueur 1 a gagne la partie")
             text.grid(row=2, column=1)
+            startButton = Button(mainGrid, text="Recommencer", command=Commencer, width=30, font=("Helvetica", 18), borderwidth=0)
+            startButton.grid(row= 1, column= 1)
         if powerCount2[elt] == 6 :
             text.config(text="Joueur 2 a gagne la partie")
             text.grid(row=2, column=1)
+            startButton = Button(mainGrid, text="Recommencer", command=Commencer, width=30, font=("Helvetica", 18), borderwidth=0)
+            startButton.grid(row= 1, column= 1)
 # draw 2 cards from cemetary
 def drawCards():
     return ([cemetary[0], cemetary[1]])
-# to do -
-# function to compare the cards (+ button), inside ya 5 fonctions :
-# 1 - fonction qui montre les choix du gagnats sous formes de 2 bouttons
-# 2 -  2 fonctions pour les deux choix (check grp whatsapp)
-#  une fonction en plus pour le choix du joueur sur kel carte il guve away dans les deux case   
-# 1 fonction pour le cas degalite (incorporated with 'drawCards()')
-# fonction qui met ensemble conditionCheck et comparaison ensemble pour representer le jeu en totalite 
-# ^(probably ajouter un boutton pour ca kamen)/(might change le return de conditionCheck to numbers bhal 7ale)
 init()
 root.mainloop()
