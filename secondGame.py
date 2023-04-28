@@ -242,6 +242,8 @@ def tkCard2(event):
     init()
     nouveau_texte = "Vous devez choisir une carte a donner \n a l'autre joueur."
     
+    global giveButton
+    global texte
     choiceGrid = Frame(mainGrid, background="#2D2727")
     choiceGrid.columnconfigure(0, weight=0)
     choiceGrid.grid(row=2, column=1)
